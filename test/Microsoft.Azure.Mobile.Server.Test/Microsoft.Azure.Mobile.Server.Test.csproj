@@ -207,7 +207,10 @@
     <Compile Include="Cache\CachePolicyProviderTests.cs" />
     <Compile Include="Cache\CachePolicyTests.cs" />
     <Compile Include="Config\AppConfigurationTests.cs" />
+    <Compile Include="Config\MobileAppActionFilterTests.cs" />
+    <Compile Include="Config\MobileAppConfigurationTests.cs" />
     <Compile Include="Config\MobileAppControllerAttributeTests.cs" />
+    <Compile Include="Config\MobileAppControllerConfigProviderTests.cs" />
     <Compile Include="Content\StaticHtmlActionResultTests.cs" />
     <Compile Include="Controllers\MobileAppControllerCacheTests.cs" />
     <Compile Include="Controllers\CorsControllerTest.cs" />

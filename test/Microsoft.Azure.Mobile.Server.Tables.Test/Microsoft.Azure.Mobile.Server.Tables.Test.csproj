@@ -188,6 +188,7 @@
     <Compile Include="Controllers\EntityTableControllerQueryTests.cs" />
     <Compile Include="Controllers\MappedEntityTableControllerUpdateTests.cs" />
     <Compile Include="Controllers\VersionTableControllerTests.cs" />
+    <Compile Include="Extensions\TableHttpConfigurationExtensionTests.cs" />
     <Compile Include="Extensions\TableHttpRequestMessageExtensionsTests.cs" />
     <Compile Include="Extensions\TableTypeExtensionsTests.cs" />
     <Compile Include="Headers\LinkHeaderTests.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Tables\QueryResultTests.cs" />
     <Compile Include="Tables\TableColumnAttributeTests.cs" />
     <Compile Include="Tables\TableControllerConfigAttributeTests.cs" />
+    <Compile Include="Tables\TableControllerConfigProviderTests.cs" />
     <Compile Include="Tables\TableFilterProviderTests.cs" />
     <Compile Include="Tables\TableQueryFilterTests.cs" />
     <Compile Include="Tables\TableUtilsTests.cs" />

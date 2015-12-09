@@ -1,6 +1,6 @@
-﻿// ---------------------------------------------------------------------------- 
+﻿// ----------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
-// ---------------------------------------------------------------------------- 
+// ----------------------------------------------------------------------------
 
 using System.Collections.Generic;
 using System.Net.Http.Formatting;
@@ -24,7 +24,11 @@ namespace Microsoft.Azure.Mobile
             var config = new HttpConfiguration();
             var controllerSettings = new HttpControllerSettings(config);
             var mobileAppControllerConfig = new MobileAppControllerAttribute();
-            mobileAppControllerConfig.Initialize(controllerSettings, new HttpControllerDescriptor());
+            var controllerDescriptor = new HttpControllerDescriptor()
+            {
+                Configuration = config
+            };
+            mobileAppControllerConfig.Initialize(controllerSettings, controllerDescriptor);
 
             JsonMediaTypeFormatter jsonFormatter = controllerSettings.Formatters.JsonFormatter;
             JsonSerializerSettings settings = jsonFormatter.SerializerSettings;

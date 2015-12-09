@@ -1,10 +1,12 @@
-﻿// ---------------------------------------------------------------------------- 
+﻿// ----------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
-// ---------------------------------------------------------------------------- 
+// ----------------------------------------------------------------------------
 
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
+using Microsoft.Azure.Mobile.Server.Config;
 using Newtonsoft.Json.Linq;
 
 namespace Microsoft.Azure.Mobile.Server.TestControllers
@@ -13,14 +15,16 @@ namespace Microsoft.Azure.Mobile.Server.TestControllers
     public class SecuredController : ApiController
     {
         [AllowAnonymous]
-        [Route("api/secured/anonymous")]
-        public IHttpActionResult GetAnonymous()
+        [Route("auth/anonymous")]
+        [HttpGet]
+        public IHttpActionResult AuthNotRequired()
         {
             return this.GetUserDetails();
         }
 
-        [Route("api/secured/authorize")]
-        public string GetApplication()
+        [Route("auth/authorize")]
+        [HttpGet]
+        public string AuthRequired()
         {
             return this.Request.Headers.GetValues("x-zumo-auth").FirstOrDefault<string>();
         }
@@ -39,7 +43,7 @@ namespace Microsoft.Azure.Mobile.Server.TestControllers
                 }
                 details = new JObject
                 {
-                    { "id", userId }               
+                    { "id", userId }
                 };
             }
 
