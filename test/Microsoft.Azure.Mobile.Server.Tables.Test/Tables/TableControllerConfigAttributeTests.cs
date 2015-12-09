@@ -1,12 +1,10 @@
-﻿// ---------------------------------------------------------------------------- 
+﻿// ----------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
-// ---------------------------------------------------------------------------- 
+// ----------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using Microsoft.Azure.Mobile.Mocks;
+using Microsoft.Azure.Mobile.Server.Config;
 using Moq;
 using Xunit;
 
@@ -14,32 +12,34 @@ namespace Microsoft.Azure.Mobile.Server.Tables
 {
     public class TableControllerConfigAttributeTests
     {
-        private TableControllerConfigAttribute tableControllerConfig;
-
-        public TableControllerConfigAttributeTests()
-        {
-            this.tableControllerConfig = new TableControllerConfigAttribute();
-        }
-
         [Fact]
-        public void Initialize_Calls_TableControllerConfigProvider()
+        public void Initialize_Calls_MobileAppControllerConfigProvider_Then_TableControllerConfigProvider()
         {
             // Arrange
-            Mock<ITableControllerConfigProvider> configProviderMock = new Mock<ITableControllerConfigProvider>();
             HttpConfiguration config = new HttpConfiguration();
-            config.SetTableControllerConfigProvider(configProviderMock.Object);
-
             HttpControllerSettings settings = new HttpControllerSettings(config);
             HttpControllerDescriptor descriptor = new HttpControllerDescriptor()
             {
                 Configuration = config
             };
 
+            string output = string.Empty;
+
+            Mock<IMobileAppControllerConfigProvider> configProviderMock = new Mock<IMobileAppControllerConfigProvider>();
+            configProviderMock.Setup(p => p.Configure(settings, descriptor)).Callback(() => output += "1");
+            config.SetMobileAppControllerConfigProvider(configProviderMock.Object);
+
+            Mock<ITableControllerConfigProvider> tableConfigProviderMock = new Mock<ITableControllerConfigProvider>();
+            tableConfigProviderMock.Setup(p => p.Configure(settings, descriptor)).Callback(() => output += "2");
+            config.SetTableControllerConfigProvider(tableConfigProviderMock.Object);
+
             // Act
-            this.tableControllerConfig.Initialize(settings, descriptor);
+            new TableControllerConfigAttribute().Initialize(settings, descriptor);
 
             // Assert
-            configProviderMock.Verify(p => p.Configure(settings, descriptor), Times.Once());
+            configProviderMock.VerifyAll();
+            tableConfigProviderMock.VerifyAll();
+            Assert.Equal("12", output);
         }
     }
 }

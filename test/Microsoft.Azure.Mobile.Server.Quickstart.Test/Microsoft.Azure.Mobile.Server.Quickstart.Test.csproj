@@ -142,6 +142,7 @@
     <Compile Include="Config\MobileAppAppBuilderExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestControllers\SecuredController.cs" />
+    <Compile Include="TestControllers\TestApiController.cs" />
     <Compile Include="TestControllers\TestTableController.cs" />
   </ItemGroup>
   <ItemGroup>

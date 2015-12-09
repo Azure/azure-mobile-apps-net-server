@@ -62,20 +62,15 @@ namespace Microsoft.Azure.Mobile.Server.Login.Test
                 new Claim(JwtRegisteredClaimNames.Sub, UserId)
             };
 
-            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() =>
+            Assert.Throws<ArgumentNullException>(() =>
                 AppServiceLoginHandler.CreateToken(claims, null, Audience, Issuer, TimeSpan.FromDays(10)));
         }
 
         [Fact]
         public void CreateToken_Throws_IfClaimsNull()
         {
-            Claim[] claims = new Claim[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, UserId)
-            };
-
-            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() =>
-                AppServiceLoginHandler.CreateToken(null, SigningKey, Audience, Issuer, TimeSpan.FromDays(10)));
+            Assert.Throws<ArgumentNullException>(() =>
+                  AppServiceLoginHandler.CreateToken(null, SigningKey, Audience, Issuer, TimeSpan.FromDays(10)));
         }
 
         [Fact]

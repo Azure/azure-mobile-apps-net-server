@@ -2,12 +2,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // ----------------------------------------------------------------------------
 
-using Microsoft.Azure.Mobile.Server.Tables;
 using System;
+using Microsoft.Azure.Mobile.Server.Tables;
 
 namespace ZumoE2EServerApp.DataObjects
 {
-    public class ParamsTestTableEntity : ITableData
+    public sealed class ParamsTestTableEntity : ITableData
     {
         public int Id { get; set; }
         public string Parameters { get; set; }

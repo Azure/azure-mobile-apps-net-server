@@ -15,15 +15,8 @@ namespace Microsoft.Azure.Mobile.Server.Config
     /// </summary>
     public class MobileAppConfiguration : AppConfiguration
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Microsoft.Azure.Mobile.Server.Config.MobileAppConfiguration" /> class.
-        /// </summary>
-        public MobileAppConfiguration()
-        {
-            this.EnableApiControllers = false;
-        }
-
-        private bool EnableApiControllers { get; set; }
+        private bool enableApiControllers = false;
+        private IMobileAppControllerConfigProvider configProvider = new MobileAppControllerConfigProvider();
 
         /// <inheritdoc />
         public override void ApplyTo(HttpConfiguration config)
@@ -34,10 +27,11 @@ namespace Microsoft.Azure.Mobile.Server.Config
             }
 
             config.SetMobileAppConfiguration(this);
+            config.SetMobileAppControllerConfigProvider(this.configProvider);
 
             base.ApplyTo(config);
 
-            if (this.EnableApiControllers)
+            if (this.enableApiControllers)
             {
                 MapApiControllers(config);
             }
@@ -50,7 +44,24 @@ namespace Microsoft.Azure.Mobile.Server.Config
         /// <returns>The current <see cref="Microsoft.Azure.Mobile.Server.Config.MobileAppConfiguration"/>.</returns>
         public MobileAppConfiguration MapApiControllers()
         {
-            this.EnableApiControllers = true;
+            this.enableApiControllers = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Registers the specified <see cref="IMobileAppControllerConfigProvider" /> with the <see cref="HttpConfiguration"/>.
+        /// Use this to override the default controller configuration.
+        /// </summary>
+        /// <param name="provider">The provider to register.</param>
+        /// <returns>The current <see cref="Microsoft.Azure.Mobile.Server.Config.MobileAppConfiguration"/>.</returns>
+        public MobileAppConfiguration WithMobileAppControllerConfigProvider(IMobileAppControllerConfigProvider provider)
+        {
+            if (provider == null)
+            {
+                throw new ArgumentNullException("provider");
+            }
+
+            this.configProvider = provider;
             return this;
         }
 

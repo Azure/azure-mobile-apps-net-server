@@ -20,6 +20,7 @@ namespace System.Web.Http
         private const string MobileAppOptionsKey = "MS_MobileAppOptions";
         private const string MobileAppSettingsProviderKey = "MS_MobileAppSettingsProvider";
         private const string CachePolicyProviderKey = "MS_CachePolicyProvider";
+        private const string MobileAppControllerConfigProviderKey = "MS_MobileAppControllerConfigProvider";
 
         /// <summary>
         /// Gets the <see cref="Microsoft.Azure.Mobile.Server.Config.MobileAppConfiguration"/> registered with the current <see cref="System.Web.Http.HttpConfiguration" />.
@@ -123,6 +124,44 @@ namespace System.Web.Http
             }
 
             config.Properties[CachePolicyProviderKey] = provider;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="Microsoft.Azure.Mobile.Server.Config.IMobileAppControllerConfigProvider"/> registered with the current <see cref="System.Web.Http.HttpConfiguration" />.
+        /// </summary>
+        /// <param name="config">The current <see cref="System.Web.Http.HttpConfiguration"/>.</param>
+        /// <returns>The registered instance.</returns>
+        public static IMobileAppControllerConfigProvider GetMobileAppControllerConfigProvider(this HttpConfiguration config)
+        {
+            if (config == null)
+            {
+                throw new ArgumentNullException("config");
+            }
+
+            IMobileAppControllerConfigProvider provider = null;
+            if (!config.Properties.TryGetValue(MobileAppControllerConfigProviderKey, out provider))
+            {
+                provider = new MobileAppControllerConfigProvider();
+                config.Properties[MobileAppControllerConfigProviderKey] = provider;
+            }
+
+            return provider;
+        }
+
+        /// <summary>
+        /// Registers an <see cref="Microsoft.Azure.Mobile.Server.Config.IMobileAppControllerConfigProvider"/> with the current <see cref="System.Web.Http.HttpConfiguration" />.
+        /// The registered class provides the base settings for controllers using the <see cref="Microsoft.Azure.Mobile.Server.Config.MobileAppControllerAttribute" />.
+        /// </summary>
+        /// <param name="config">The current <see cref="System.Web.Http.HttpConfiguration"/>.</param>
+        /// <param name="configProvider">The instance to register.</param>
+        public static void SetMobileAppControllerConfigProvider(this HttpConfiguration config, IMobileAppControllerConfigProvider configProvider)
+        {
+            if (config == null)
+            {
+                throw new ArgumentNullException("config");
+            }
+
+            config.Properties[MobileAppControllerConfigProviderKey] = configProvider;
         }
 
         internal static HashSet<string> GetMobileAppControllerNames(this HttpConfiguration config)

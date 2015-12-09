@@ -96,8 +96,10 @@ namespace Microsoft.Azure.Mobile.Server.Config
                 var tableGet = await client.GetAsync("tables/testtable");
                 var tableGetApplication = await client.GetAsync("tables/testtable/someId");
                 var tableGetApiRoute = await client.GetAsync("api/testtable");
-                var apiGetAnonymous = await client.GetAsync("api/secured/anonymous");
-                var apiGetAuthorize = await client.GetAsync("api/secured/authorize");
+                var apiGetAnonymous = await client.GetAsync("auth/anonymous");
+                var apiGetAuthorize = await client.GetAsync("auth/authorize");
+                var apiDirectRoute = await client.GetAsync("api/testapi");
+                var apiGetTableRoute = await client.GetAsync("table/testapi");
 
                 // Assert
                 Assert.Equal(HttpStatusCode.OK, notificationsPut.StatusCode);
@@ -115,17 +117,23 @@ namespace Microsoft.Azure.Mobile.Server.Config
                 ValidateHeaders(tableGetApplication, true);
 
                 // Succeeds: TableControllers will show up in the api route as well.
-                Assert.Equal(HttpStatusCode.OK, tableGetApiRoute.StatusCode);
+                Assert.Equal(HttpStatusCode.NotFound, tableGetApiRoute.StatusCode);
                 ValidateHeaders(tableGetApiRoute, true);
 
                 // Succeeds: Auth is not set up so no ServiceUser is created. But
-                // the AuthorizeAttribute lets these through.
+                // the AllowAnonymousAttribute lets these through.
                 Assert.Equal(HttpStatusCode.OK, apiGetAnonymous.StatusCode);
                 ValidateHeaders(apiGetAnonymous, false);
 
-                // Succeeds: Api action with no AuthorizeLevel attribute
+                Assert.Equal(HttpStatusCode.OK, apiDirectRoute.StatusCode);
+                ValidateHeaders(apiDirectRoute, true);
+
+                Assert.Equal(HttpStatusCode.NotFound, apiGetTableRoute.StatusCode);
+                ValidateHeaders(apiGetTableRoute, true);
+
                 Assert.Equal(isAuthenticated ? HttpStatusCode.OK : HttpStatusCode.Unauthorized, apiGetAuthorize.StatusCode);
                 ValidateHeaders(apiGetAuthorize, false);
+
                 if (isAuthenticated)
                 {
                     string requestAuthToken = apiGetAuthorize.RequestMessage.Headers.Single(h => h.Key == "x-zumo-auth").Value.Single();

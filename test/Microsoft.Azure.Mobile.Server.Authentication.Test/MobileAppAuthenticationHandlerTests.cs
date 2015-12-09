@@ -227,8 +227,6 @@ namespace Microsoft.Azure.Mobile.Server.Security
 
         private static IOwinRequest CreateAuthRequest(Uri webappUri, JwtSecurityToken token = null)
         {
-            string webappBaseUrl = webappUri.GetLeftPart(UriPartial.Authority) + "/";
-
             OwinContext context = new OwinContext();
             IOwinRequest request = context.Request;
             request.Host = HostString.FromUriComponent(webappUri.Host);

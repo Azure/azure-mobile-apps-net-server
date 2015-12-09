@@ -119,9 +119,12 @@
     <Compile Include="Cache\CachePolicyProvider.cs" />
     <Compile Include="Cache\ICachePolicyProvider.cs" />
     <Compile Include="Config\AppConfiguration.cs" />
+    <Compile Include="Config\IMobileAppControllerConfigProvider.cs" />
     <Compile Include="Config\IMobileAppExtensionConfigProvider.cs" />
+    <Compile Include="Config\MobileAppActionFilterAttribute.cs" />
     <Compile Include="Config\MobileAppControllerAttribute.cs" />
     <Compile Include="Config\MobileAppConfiguration.cs" />
+    <Compile Include="Config\MobileAppControllerConfigProvider.cs" />
     <Compile Include="Content\StaticHtmlActionResult.cs" />
     <Compile Include="Config\IAppConfiguration.cs" />
     <Compile Include="LogCategories.cs" />

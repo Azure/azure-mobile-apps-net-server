@@ -16,7 +16,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
     public class TableControllerConfigProvider : ITableControllerConfigProvider
     {
         /// <inheritdoc />
-        public void Configure(HttpControllerSettings controllerSettings, HttpControllerDescriptor controllerDescriptor)
+        public virtual void Configure(HttpControllerSettings controllerSettings, HttpControllerDescriptor controllerDescriptor)
         {
             if (controllerSettings == null)
             {

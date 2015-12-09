@@ -250,8 +250,6 @@ namespace Microsoft.Azure.Mobile.Server
 
             private AppServiceAuthenticationOptions GetMobileAppAuthOptions(HttpConfiguration config)
             {
-                MobileAppSettingsDictionary settings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
-
                 return new AppServiceAuthenticationOptions
                 {
                     SigningKey = this.SigningKey,
