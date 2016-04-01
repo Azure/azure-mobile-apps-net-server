@@ -112,7 +112,7 @@ namespace Microsoft.Azure.Mobile.Server.Authentication
                 throw new ArgumentNullException("options");
             }
             string[] tokenFromHeaderCollection;            
-            if (!request.Headers.TryGetValue(AuthenticationHeaderName,out tokenFromHeaderCollection))
+            if (!request.Headers.TryGetValue(AuthenticationHeaderName, out tokenFromHeaderCollection))
             {
                 return null;
             }
