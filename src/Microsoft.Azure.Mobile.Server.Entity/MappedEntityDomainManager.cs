@@ -102,7 +102,7 @@ namespace Microsoft.Azure.Mobile.Server
 
         public override IQueryable<TData> Query()
         {
-            IQueryable<TData> query = this.Context.Set<TModel>().Project().To<TData>();
+            IQueryable<TData> query = this.Context.Set<TModel>().ProjectTo<TData>();
             query = TableUtils.ApplyDeletedFilter(query, this.IncludeDeleted);
             return query;
         }
@@ -195,7 +195,7 @@ namespace Microsoft.Azure.Mobile.Server
                 throw new ArgumentNullException("filter");
             }
 
-            IQueryable<TData> query = this.Context.Set<TModel>().Where(filter).Project().To<TData>();
+            IQueryable<TData> query = this.Context.Set<TModel>().Where(filter).ProjectTo<TData>();
             query = TableUtils.ApplyDeletedFilter(query, includeDeleted);
             return SingleResult.Create(query);
         }
