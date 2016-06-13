@@ -303,18 +303,24 @@ namespace Microsoft.Azure.Mobile.Server
 
         private IEdmModel GetEdmModel()
         {
+            object modelFromDescriptor = null;
             var actionDescriptor = this.Request.GetActionDescriptor();
-            IEdmModel model = actionDescriptor == null ? null : (IEdmModel)actionDescriptor.Properties[ModelKeyPrefix + typeof(TData).FullName];
-            if (model != null)
+
+            if (actionDescriptor != null)
             {
-                return model;
+                actionDescriptor.Properties.TryGetValue(ModelKeyPrefix + typeof(TData).FullName, out modelFromDescriptor);
+            }
+
+            var edmModel = modelFromDescriptor as IEdmModel;
+            if (edmModel != null)
+            {
+                return edmModel;
             }
 
             var builder = new ODataConventionModelBuilder();
             builder.EntitySet<TData>(this.TableName);
-            model = builder.GetEdmModel();
 
-            return model;
+            return builder.GetEdmModel();
         }
 
         public override async Task<SingleResult<TData>> LookupAsync(string id)
