@@ -73,10 +73,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -265,10 +261,6 @@
       <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Tables.TablesNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.Tables.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Server.Storage, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Storage.StorageNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.Storage.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' != 'SdkRel' ">
     <ProjectReference Include="..\src\Microsoft.Azure.Mobile.Server.Authentication\Microsoft.Azure.Mobile.Server.Authentication.csproj">
@@ -298,10 +290,6 @@
     <ProjectReference Include="..\src\Microsoft.Azure.Mobile.Server.Quickstart\Microsoft.Azure.Mobile.Server.Quickstart.csproj">
       <Project>{f72d0710-4dd6-4751-8908-78f207229904}</Project>
       <Name>Microsoft.Azure.Mobile.Server.Quickstart</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\src\Microsoft.Azure.Mobile.Server.Storage\Microsoft.Azure.Mobile.Server.Storage.csproj">
-      <Project>{2f69a93f-58da-4a8d-a391-b665f108db51}</Project>
-      <Name>Microsoft.Azure.Mobile.Server.Storage</Name>
     </ProjectReference>
     <ProjectReference Include="..\src\Microsoft.Azure.Mobile.Server.Tables\Microsoft.Azure.Mobile.Server.Tables.csproj">
       <Project>{726cca9e-f04e-495e-bc44-866d206d221f}</Project>
