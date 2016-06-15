@@ -340,7 +340,7 @@ namespace Microsoft.Azure.Mobile.Server.Security
         /// </summary>
         private ClaimsPrincipal CreateTestUser()
         {
-            AppServiceAuthenticationOptions options = CreateTestOptions();
+            AppServiceAuthenticationOptions options = this.CreateTestOptions();
 
             Claim[] claims = new Claim[]
             {

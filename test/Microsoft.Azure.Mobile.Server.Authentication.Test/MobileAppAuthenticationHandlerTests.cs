@@ -246,19 +246,6 @@ namespace Microsoft.Azure.Mobile.Server.Security
             return request;
         }
 
-        internal class MobileAppAuthenticationHandlerMock : AppServiceAuthenticationHandler
-        {
-            public MobileAppAuthenticationHandlerMock(ILogger logger)
-                : base(logger)
-            {
-            }
-
-            public new AuthenticationTicket Authenticate(IOwinRequest request, AppServiceAuthenticationOptions options)
-            {
-                return base.Authenticate(request, options);
-            }
-        }
-
         private static AppServiceAuthenticationOptions CreateTestOptions(HttpConfiguration config)
         {
             AppServiceAuthenticationOptions options = new AppServiceAuthenticationOptions
@@ -270,6 +257,19 @@ namespace Microsoft.Azure.Mobile.Server.Security
             };
 
             return options;
+        }
+
+        internal class MobileAppAuthenticationHandlerMock : AppServiceAuthenticationHandler
+        {
+            public MobileAppAuthenticationHandlerMock(ILogger logger)
+                : base(logger)
+            {
+            }
+
+            public new AuthenticationTicket Authenticate(IOwinRequest request, AppServiceAuthenticationOptions options)
+            {
+                return base.Authenticate(request, options);
+            }
         }
     }
 }

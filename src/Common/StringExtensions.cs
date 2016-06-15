@@ -4,7 +4,6 @@
 
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 
@@ -14,7 +13,7 @@ namespace System
     internal static class StringExtensions
     {
         /// <summary>
-        /// Formats the input string to be user visible using <see cref="CultureInfo.CurrentCulture"/>, per FxCop's rule
+        /// Formats the input string to be user visible using <see cref="CultureInfo.CurrentCulture"/>.
         /// </summary>
         public static string FormatForUser(this string format, params object[] args)
         {
