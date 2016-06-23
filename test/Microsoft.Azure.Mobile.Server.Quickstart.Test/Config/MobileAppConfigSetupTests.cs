@@ -60,7 +60,6 @@ namespace Microsoft.Azure.Mobile.Server.Config
                 // Arrange
                 HttpConfiguration config = new HttpConfiguration();
                 config.MapHttpAttributeRoutes();
-                config.EnableSystemDiagnosticsTracing();
                 new MobileAppConfiguration()
                     .UseDefaultConfiguration()
                     .ApplyTo(config);

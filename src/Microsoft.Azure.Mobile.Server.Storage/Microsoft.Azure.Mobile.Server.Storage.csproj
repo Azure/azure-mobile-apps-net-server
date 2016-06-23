@@ -21,27 +21,27 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\Debug</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>..\..\bin\Debug\Microsoft.Azure.Mobile.Server.Storage.xml</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\Microsoft.Azure.Mobile.Server.Storage.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
     <CodeAnalysisRuleSet>..\Src.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\Release\</OutputPath>
+    <OutputPath>..\..\bin\Release</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <CodeAnalysisRuleSet>..\Src.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>..\..\bin\Release\Microsoft.Azure.Mobile.Server.Storage.xml</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\Microsoft.Azure.Mobile.Server.Storage.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <Import Project="..\..\..\Microsoft.Azure.Mobile.Build.props" Condition="Exists('..\..\..\Microsoft.Azure.Mobile.Build.props')" />
@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Microsoft.Azure.Mobile.Server.Storage.nuspec" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

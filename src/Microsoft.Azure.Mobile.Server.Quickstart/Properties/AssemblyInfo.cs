@@ -5,4 +5,3 @@
 using System.Reflection;
 
 [assembly: AssemblyTitle("Microsoft.Azure.Mobile.Server.Quickstart")]
-[assembly: AssemblyDescription("")]

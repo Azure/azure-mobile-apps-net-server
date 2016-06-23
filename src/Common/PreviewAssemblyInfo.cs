@@ -17,9 +17,6 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyMetadata("Serviceable", "True")]
 
-// ===========================================================================
-//  Only edit the first two parts of the versions below.
-//  The official build will automatically generate the last two parts.
-// ===========================================================================
-[assembly: AssemblyVersion("0.3.0.0")]
-[assembly: AssemblyFileVersion("0.3.0.0")]
+[assembly: AssemblyVersion("0.4.0")]
+[assembly: AssemblyFileVersion("0.4.0")]
+[assembly: AssemblyInformationalVersion("0.4.0")]
