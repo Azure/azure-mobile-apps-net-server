@@ -41,9 +41,14 @@
   </Target>
   
   <Target Name="Build" DependsOnTargets="RestorePackages">
+    <!-- Read the (eventual) nuget version from AssemblyInfo.cs. This is used for template generation --> 
+    <ParseNugetVersion AssemblyInfoFile="src\Common\CommonAssemblyInfo.cs">
+      <Output TaskParameter="NugetVersion" PropertyName="NugetVersion" />
+    </ParseNugetVersion>
+    
     <MSBuild Projects="@(Build)"
              BuildInParallel="True"
-             Properties="OutputPath=$(OutputPathBin);Configuration=$(Configuration);Platform=$(Platform);RunXunitTests=false" />
+             Properties="OutputPath=$(OutputPathBin);Configuration=$(Configuration);Platform=$(Platform);RunXunitTests=false;NugetVersion=$(NugetVersion)" />
   </Target>
   
   <UsingTask TaskName="Xunit.Runner.MSBuild.xunit"
@@ -142,6 +147,25 @@
                     Log.LogErrorFromException(ex);
                     return false;
                 }
+            ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+<UsingTask TaskName="ParseNugetVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v12.0.dll">
+    <ParameterGroup>
+      <AssemblyInfoFile ParameterType="System.String" Required="true" />
+      <NugetVersion ParameterType="System.String" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+                AssemblyInfoFile = Path.GetFullPath(AssemblyInfoFile);
+                var lines = File.ReadAllLines(AssemblyInfoFile);
+                var assemblyInfo = lines.Single (l => l.Contains("AssemblyInformational"));
+                var firstIndex = assemblyInfo.IndexOf("\"") + 1;
+                var lastIndex = assemblyInfo.LastIndexOf("\"");
+                NugetVersion = assemblyInfo.Substring(firstIndex, lastIndex-firstIndex);
             ]]>
       </Code>
     </Task>
