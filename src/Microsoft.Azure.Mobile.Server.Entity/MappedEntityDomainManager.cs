@@ -129,7 +129,7 @@ namespace Microsoft.Azure.Mobile.Server
                 data.Id = Guid.NewGuid().ToString("N");
             }
 
-            TModel model = Mapper.Map<TData, TModel>(data);
+            TModel model = MapDtoToEntity(data);
             this.Context.Set<TModel>().Add(model);
 
             await this.SubmitChangesAsync();
@@ -162,7 +162,7 @@ namespace Microsoft.Azure.Mobile.Server
             }
 
             this.VerifyUpdatedKey(id, data);
-            TModel model = Mapper.Map<TData, TModel>(data);
+            TModel model = MapDtoToEntity(data);
 
             try
             {
@@ -222,12 +222,12 @@ namespace Microsoft.Azure.Mobile.Server
             {
                 throw new HttpResponseException(this.Request.CreateNotFoundResponse());
             }
-
-            TData data = Mapper.Map<TModel, TData>(model);
-            if (!includeDeleted && data.Deleted)
+            if (!includeDeleted && model.Deleted)
             {
                 throw new HttpResponseException(this.Request.CreateNotFoundResponse());
             }
+
+            TData data = Mapper.Map<TModel, TData>(model);
 
             // Set the original version based on etag (if present)
             byte[] patchVersion = patch.GetPropertyValueOrDefault<TData, byte[]>(TableUtils.VersionPropertyName);
@@ -237,7 +237,7 @@ namespace Microsoft.Azure.Mobile.Server
             }
 
             patch.Patch(data);
-            Mapper.Map<TData, TModel>(data, model);
+            model = MapDtoToEntity(data, model);
 
             await this.SubmitChangesAsync();
 
@@ -271,14 +271,12 @@ namespace Microsoft.Azure.Mobile.Server
                 this.SetOriginalVersion(model, version);
             }
 
-            if (this.EnableSoftDelete)
-            {
-                data.Deleted = true;
-                Mapper.Map<TData, TModel>(data, model);
+            if (this.EnableSoftDelete) {
+                model.Deleted = true;  // soft delete
             }
             else
             {
-                set.Remove(model);
+                set.Remove(model);  // hard delete
             }
 
             int result = await this.SubmitChangesAsync();
@@ -399,5 +397,37 @@ namespace Microsoft.Azure.Mobile.Server
                 throw new HttpResponseException(badKey);
             }
         }
+        
+        /// <summary>
+        /// Maps from a DTO to an entity.
+        /// </summary>
+        /// <remarks>
+        /// This default implementation relies on the existence of a suitable
+        /// AutoMapper mapping. A subclass may override this method to perform
+        /// custom mapping of complex entity relationships.
+        /// </remarks>
+        /// <param name="dto">The source DTO.</param>
+        /// <returns>The destination entity.</returns>
+        protected virtual TEntity MapDtoToEntity(TData dto) {
+            return Mapper.Map<TData, TModel>(dto);
+        }
+    
+    
+        /// <summary>
+        /// Maps from a DTO to an entity.
+        /// </summary>
+        /// <remarks>
+        /// This default implementation relies on the existence of a suitable
+        /// AutoMapper mapping. A subclass may override this method to perform
+        /// custom mapping of complex entity relationships.
+        /// </remarks>
+        /// <param name="dto">The source DTO.</param>
+        /// <param name="entity">An existing destination entity.</param>
+        /// <returns>The updated existing destination entity.</returns>
+        protected virtual TModel MapDtoToEntity(TData dto, TModel entity) {
+            return Mapper.Map(dto, entity);
+        }
+
+        
     }
 }
