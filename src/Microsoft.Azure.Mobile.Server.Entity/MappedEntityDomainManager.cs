@@ -408,7 +408,7 @@ namespace Microsoft.Azure.Mobile.Server
         /// </remarks>
         /// <param name="dto">The source DTO.</param>
         /// <returns>The destination entity.</returns>
-        protected virtual TEntity MapDtoToEntity(TData dto) {
+        protected virtual TModel MapDtoToEntity(TData dto) {
             return Mapper.Map<TData, TModel>(dto);
         }
     
