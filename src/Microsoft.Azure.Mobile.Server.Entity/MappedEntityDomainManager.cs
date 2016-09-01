@@ -414,7 +414,7 @@ namespace Microsoft.Azure.Mobile.Server
     
     
         /// <summary>
-        /// Maps from a DTO to an entity.
+        /// Maps from a DTO to an existing entity.
         /// </summary>
         /// <remarks>
         /// This default implementation relies on the existence of a suitable
@@ -422,10 +422,9 @@ namespace Microsoft.Azure.Mobile.Server
         /// custom mapping of complex entity relationships.
         /// </remarks>
         /// <param name="dto">The source DTO.</param>
-        /// <param name="entity">An existing destination entity.</param>
-        /// <returns>The updated existing destination entity.</returns>
-        protected virtual TModel MapDtoToEntity(TData dto, TModel entity) {
-            return Mapper.Map(dto, entity);
+        /// <param name="entity">An existing destination entity, which will be updated.</param>
+        protected virtual void MapDtoToEntity(TData dto, TModel entity) {
+            Mapper.Map(dto, entity);
         }
 
         
