@@ -237,7 +237,7 @@ namespace Microsoft.Azure.Mobile.Server
             }
 
             patch.Patch(data);
-            model = MapDtoToEntity(data, model);
+            MapDtoToEntity(data, model);
 
             await this.SubmitChangesAsync();
 
