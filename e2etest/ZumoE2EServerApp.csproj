@@ -231,39 +231,39 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'SdkRel' ">
     <Reference Include="Microsoft.Azure.Mobile.Server, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.ServerNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.ServerNugetVersion\lib\net46\Microsoft.Azure.Mobile.Server.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Authentication, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Authentication.AuthenticationNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.Authentication.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Authentication.AuthenticationNugetVersion\lib\net46\Microsoft.Azure.Mobile.Server.Authentication.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.CrossDomain, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.CrossDomain.CrossDomainNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.CrossDomain.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.CrossDomain.CrossDomainNugetVersion\lib\net46\Microsoft.Azure.Mobile.Server.CrossDomain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Entity, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Entity.EntityNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.Entity.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Entity.EntityNugetVersion\lib\net46\Microsoft.Azure.Mobile.Server.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Home, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Home.HomeNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.Home.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Home.HomeNugetVersion\lib\net46\Microsoft.Azure.Mobile.Server.Home.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Login, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Login.LoginNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.Login.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Login.LoginNugetVersion\lib\net46\Microsoft.Azure.Mobile.Server.Login.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Notifications, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Notifications.NotificationsNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.Notifications.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Notifications.NotificationsNugetVersion\lib\net46\Microsoft.Azure.Mobile.Server.Notifications.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Quickstart, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Quickstart.QuickstartNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.Quickstart.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Quickstart.QuickstartNugetVersion\lib\net46\Microsoft.Azure.Mobile.Server.Quickstart.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Tables, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Tables.TablesNugetVersion\lib\net45\Microsoft.Azure.Mobile.Server.Tables.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Tables.TablesNugetVersion\lib\net46\Microsoft.Azure.Mobile.Server.Tables.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
