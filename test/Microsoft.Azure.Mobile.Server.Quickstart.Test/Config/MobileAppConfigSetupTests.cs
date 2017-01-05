@@ -60,10 +60,12 @@ namespace Microsoft.Azure.Mobile.Server.Config
                 // Arrange
                 HttpConfiguration config = new HttpConfiguration();
                 config.MapHttpAttributeRoutes();
+#pragma warning disable 618
                 new MobileAppConfiguration()
                     .UseDefaultConfiguration()
+                    .AddPushNotifications()
                     .ApplyTo(config);
-
+#pragma warning restore 618
                 var pushClientMock = new Mock<PushClient>(config);
                 pushClientMock.Setup(p => p.CreateOrUpdateInstallationAsync(It.IsAny<Installation>()))
                     .Returns(Task.FromResult(0));

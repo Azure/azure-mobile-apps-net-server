@@ -11,6 +11,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
     public static class MobileAppOptionsExtensions
     {
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "We only want this extension to apply to MobileAppConfiguration, not just any AppConfiguration")]
+        [Obsolete("Use App Service Push instead.", error: false)]
         public static MobileAppConfiguration AddPushNotifications(this MobileAppConfiguration options)
         {
             if (options == null)

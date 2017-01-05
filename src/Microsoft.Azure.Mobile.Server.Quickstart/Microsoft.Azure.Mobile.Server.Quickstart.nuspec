@@ -11,7 +11,10 @@
     <projectUrl>https://github.com/azure/azure-mobile-apps-net-server</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This is the Azure Mobile Apps .NET Server SDK quickstart package, which references all other server SDK packages. To learn more about Azure Mobile, go to http://azure.microsoft.com/mobile.</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>
+      Breaking Changes
+        Version 2.0.0 : UseDefaultConfiguration() does not enable Push registration endpoint
+    </releaseNotes>
     <copyright>&#169; Microsoft Corporation. All rights reserved</copyright>
     <tags>microsoft azure mobile server appservice windowsazureofficial aspnet webapi aspnetwebapi owin app service api apps</tags>    
   </metadata>

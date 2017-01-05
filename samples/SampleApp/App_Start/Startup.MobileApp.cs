@@ -30,6 +30,7 @@ namespace Local
 
             new MobileAppConfiguration()
                 .UseDefaultConfiguration()
+                .AddPushNotifications()
                 .ApplyTo(config);
 
             Mapper.Initialize(cfg =>

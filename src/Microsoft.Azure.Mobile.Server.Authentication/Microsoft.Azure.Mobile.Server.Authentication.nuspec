@@ -11,7 +11,10 @@
     <projectUrl>https://github.com/azure/azure-mobile-apps-net-server</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is part of the Azure Mobile .NET Server SDK and provides authentication features. To learn more about Azure Mobile, go to http://azure.microsoft.com/mobile.</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>
+      Breaking Changes
+        Version 2.0.0 : ProviderCredentials.Claims is no longer available. User ProviderCredentials.UserClaims instead
+    </releaseNotes>
     <copyright>&#169; Microsoft Corporation. All rights reserved</copyright>
     <tags>microsoft azure mobile server appservice windowsazureofficial aspnet webapi aspnetwebapi owin app service api apps</tags>
   </metadata>

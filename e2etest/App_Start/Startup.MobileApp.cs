@@ -29,9 +29,13 @@ namespace ZumoE2EServerApp
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
 
             config.MapHttpAttributeRoutes();
+
+#pragma warning disable 618
             new MobileAppConfiguration()
                 .UseDefaultConfiguration()
+                .AddPushNotifications()
                 .ApplyTo(config);
+#pragma warning restore 618
 
             var cors = new EnableCorsAttribute("http://localhost:1076", "*", "*");
             config.EnableCors(cors);

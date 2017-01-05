@@ -21,8 +21,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
                         .MapTableControllers()
                         .AddEntityFramework())
                 .MapApiControllers()
-                .AddMobileAppHomeController()
-                .AddPushNotifications();
+                .AddMobileAppHomeController();
         }
     }
 }

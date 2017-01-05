@@ -124,10 +124,6 @@
       <Project>{a42dc113-c021-4568-93bc-03824ecf29e1}</Project>
       <Name>Microsoft.Azure.Mobile.Server.Home</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Microsoft.Azure.Mobile.Server.Notifications\Microsoft.Azure.Mobile.Server.Notifications.csproj">
-      <Project>{72076e66-f0b1-40b8-8bdc-3f0e0c622486}</Project>
-      <Name>Microsoft.Azure.Mobile.Server.Notifications</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Microsoft.Azure.Mobile.Server.Tables\Microsoft.Azure.Mobile.Server.Tables.csproj">
       <Project>{726cca9e-f04e-495e-bc44-866d206d221f}</Project>
       <Name>Microsoft.Azure.Mobile.Server.Tables</Name>
