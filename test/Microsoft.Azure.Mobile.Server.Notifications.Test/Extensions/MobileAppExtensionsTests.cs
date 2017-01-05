@@ -44,6 +44,7 @@ namespace Microsoft.Azure.Mobile.Server.Notifications.Test.Extensions
 
                 config.SetPushClient(pushClientMock.Object);
 #pragma warning disable 618
+                // Suppressing Obsolete warning on AddPushNotifications
                 new MobileAppConfiguration()
                     .MapApiControllers()
                     .AddPushNotifications()
