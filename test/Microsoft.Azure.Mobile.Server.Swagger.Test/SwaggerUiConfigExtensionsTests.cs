@@ -26,18 +26,18 @@ namespace Microsoft.Azure.Mobile.Server.Swagger.Test
             });
 
             string o2cExpected = GetResourceString("Microsoft.Azure.Mobile.Server.Swagger.o2c.html");
-            string oauthExpected = GetResourceString("Microsoft.Azure.Mobile.Server.Swagger.swagger-oauth.js");
+            // string oauthExpected = GetResourceString("Microsoft.Azure.Mobile.Server.Swagger.swagger-oauth.js");
 
             // Act
             var o2cResponse = await server.HttpClient.GetAsync("http://localhost/swagger/ui/o2c-html");
-            var oauthResponse = await server.HttpClient.GetAsync("http://localhost/swagger/ui/lib/swagger-oauth-js");
+            // var oauthResponse = await server.HttpClient.GetAsync("http://localhost/swagger/ui/lib/swagger-oauth-js");
 
             string o2c = await o2cResponse.Content.ReadAsStringAsync();
-            string oauth = await oauthResponse.Content.ReadAsStringAsync();
+            // string oauth = await oauthResponse.Content.ReadAsStringAsync();
 
             // Assert
             Assert.Equal(o2cExpected, o2c);
-            Assert.Equal(oauthExpected, oauth);
+            // Assert.Equal(oauthExpected, oauth);
             Assert.Contains(typeof(SwaggerUiSecurityFilter), config.MessageHandlers.Select(h => h.GetType()));
         }
 

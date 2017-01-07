@@ -38,7 +38,7 @@ namespace Local
                    // 1. Do the OAuth flow using the App Service Auth parameters
                    // 2. Parse the returned token
                    // 3. Apply the token to the X-ZUMO-AUTH header
-                   c.MobileAppUi();
+                   c.MobileAppUi(config);
                });
         }
     }
