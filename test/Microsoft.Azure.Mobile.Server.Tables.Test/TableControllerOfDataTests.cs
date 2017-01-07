@@ -261,7 +261,7 @@ namespace Microsoft.Azure.Mobile.Server
                     Assert.Equal(Encoding.UTF8.GetBytes("Hello"), version);
                     order += "1";
                 })
-                .ReturnsAsync(null);
+                .ReturnsAsync(() => null);
 
             // Act
             await this.controller.UpdateAsync(Id, this.patch);
@@ -337,7 +337,7 @@ namespace Microsoft.Azure.Mobile.Server
                     Assert.Equal(Encoding.UTF8.GetBytes("Hello"), data.Version);
                     order += "1";
                 })
-                .ReturnsAsync(null);
+                .ReturnsAsync(() => null);
 
             // Act
             await this.controller.ReplaceAsync(Id, this.data);
