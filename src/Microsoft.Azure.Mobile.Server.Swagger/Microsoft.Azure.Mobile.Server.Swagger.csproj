@@ -72,8 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common\PreviewAssemblyInfo.cs">
-      <Link>Properties\PreviewAssemblyInfo.cs</Link>
+    <Compile Include="..\Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="MobileAppAuthenticationFilter.cs" />
     <Compile Include="Extensions\SwaggerDocsConfigExtensions.cs" />
