@@ -25,20 +25,22 @@ namespace Microsoft.Azure.Mobile.Server.Swagger.Test
                 c.MobileAppUi(config);
             });
 
-            string o2cExpected = GetResourceString("Microsoft.Azure.Mobile.Server.Swagger.o2c.html");
-            // string oauthExpected = GetResourceString("Microsoft.Azure.Mobile.Server.Swagger.swagger-oauth.js");
+            await ValidateResource(server, "Microsoft.Azure.Mobile.Server.Swagger.o2c.html", "http://localhost/swagger/ui/o2c-html");
+            await ValidateResource(server, "Microsoft.Azure.Mobile.Server.Swagger.swagger-ui.min.js", "http://localhost/swagger/ui/swagger-ui-min-js");
+
+            Assert.Contains(typeof(SwaggerUiSecurityFilter), config.MessageHandlers.Select(h => h.GetType()));
+        }
+
+        private static async Task ValidateResource(TestServer server, string resource, string requestUri)
+        {
+            string expected = GetResourceString(resource);
 
             // Act
-            var o2cResponse = await server.HttpClient.GetAsync("http://localhost/swagger/ui/o2c-html");
-            // var oauthResponse = await server.HttpClient.GetAsync("http://localhost/swagger/ui/lib/swagger-oauth-js");
-
-            string o2c = await o2cResponse.Content.ReadAsStringAsync();
-            // string oauth = await oauthResponse.Content.ReadAsStringAsync();
+            var response = await server.HttpClient.GetAsync(requestUri);
+            string actual = await response.Content.ReadAsStringAsync();
 
             // Assert
-            Assert.Equal(o2cExpected, o2c);
-            // Assert.Equal(oauthExpected, oauth);
-            Assert.Contains(typeof(SwaggerUiSecurityFilter), config.MessageHandlers.Select(h => h.GetType()));
+            Assert.Equal(expected, actual);
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This code is resilient to this scenario")]
