@@ -45,28 +45,28 @@
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.<#= this.GetVersion(nugetPackages, "Microsoft.Owin")#>\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.<#= NugetVersion#>\lib\net45\Microsoft.Azure.Mobile.Server.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.<#= NugetVersion#>\lib\net46\Microsoft.Azure.Mobile.Server.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Entity">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Entity.<#= NugetVersion#>\lib\net45\Microsoft.Azure.Mobile.Server.Entity.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Entity.<#= NugetVersion#>\lib\net46\Microsoft.Azure.Mobile.Server.Entity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Notifications">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Notifications.<#= NugetVersion#>\lib\net45\Microsoft.Azure.Mobile.Server.Notifications.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Notifications.<#= NugetVersion#>\lib\net46\Microsoft.Azure.Mobile.Server.Notifications.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Home">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Home.<#= NugetVersion#>\lib\net45\Microsoft.Azure.Mobile.Server.Home.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Home.<#= NugetVersion#>\lib\net46\Microsoft.Azure.Mobile.Server.Home.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Authentication">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Authentication.<#= NugetVersion#>\lib\net45\Microsoft.Azure.Mobile.Server.Authentication.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Authentication.<#= NugetVersion#>\lib\net46\Microsoft.Azure.Mobile.Server.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Quickstart">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Quickstart.<#= NugetVersion#>\lib\net45\Microsoft.Azure.Mobile.Server.Quickstart.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Quickstart.<#= NugetVersion#>\lib\net46\Microsoft.Azure.Mobile.Server.Quickstart.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Tables">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Tables.<#= NugetVersion#>\lib\net45\Microsoft.Azure.Mobile.Server.Tables.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Tables.<#= NugetVersion#>\lib\net46\Microsoft.Azure.Mobile.Server.Tables.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.CrossDomain">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.CrossDomain.<#= NugetVersion#>\lib\net45\Microsoft.Azure.Mobile.Server.CrossDomain.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Server.CrossDomain.<#= NugetVersion#>\lib\net46\Microsoft.Azure.Mobile.Server.CrossDomain.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath><#= this.GetHintPath(nugetPackages, "EntityFramework")#>\EntityFramework.dll</HintPath>

@@ -1,4 +1,4 @@
-﻿<#@ template hostspecific="true" language="C#" #>
+﻿net46<#@ template hostspecific="true" language="C#" #>
 <# string NugetVersion = this.Host.ResolveParameterValue("", "", "NugetVersion"); #>
 <#@ output extension=".vstemplate" #>
 <#@ assembly name="System.Core" #>
@@ -72,14 +72,14 @@ foreach(var nugetPackage in nugetPackages)
 <#
 }
 #>
-            <package id="Microsoft.Azure.Mobile.Server" version="<#= NugetVersion#>" targetFramework="net45" />
-            <package id="Microsoft.Azure.Mobile.Server.Tables" version="<#= NugetVersion#>" targetFramework="net45" />
-            <package id="Microsoft.Azure.Mobile.Server.Entity" version="<#= NugetVersion#>" targetFramework="net45" />
-            <package id="Microsoft.Azure.Mobile.Server.Quickstart" version="<#= NugetVersion#>" targetFramework="net45" />
-            <package id="Microsoft.Azure.Mobile.Server.Home" version="<#= NugetVersion#>" targetFramework="net45" />
-            <package id="Microsoft.Azure.Mobile.Server.Notifications" version="<#= NugetVersion#>" targetFramework="net45" />
-            <package id="Microsoft.Azure.Mobile.Server.CrossDomain" version="<#= NugetVersion#>" targetFramework="net45" />
-            <package id="Microsoft.Azure.Mobile.Server.Authentication" version="<#= NugetVersion#>" targetFramework="net45" />
+            <package id="Microsoft.Azure.Mobile.Server" version="<#= NugetVersion#>" targetFramework="net46" />
+            <package id="Microsoft.Azure.Mobile.Server.Tables" version="<#= NugetVersion#>" targetFramework="net46" />
+            <package id="Microsoft.Azure.Mobile.Server.Entity" version="<#= NugetVersion#>" targetFramework="net46" />
+            <package id="Microsoft.Azure.Mobile.Server.Quickstart" version="<#= NugetVersion#>" targetFramework="net46" />
+            <package id="Microsoft.Azure.Mobile.Server.Home" version="<#= NugetVersion#>" targetFramework="net46" />
+            <package id="Microsoft.Azure.Mobile.Server.Notifications" version="<#= NugetVersion#>" targetFramework="net46" />
+            <package id="Microsoft.Azure.Mobile.Server.CrossDomain" version="<#= NugetVersion#>" targetFramework="net46" />
+            <package id="Microsoft.Azure.Mobile.Server.Authentication" version="<#= NugetVersion#>" targetFramework="net46" />
             <package id="Microsoft.Owin.Host.SystemWeb" version="<#= this.GetVersion(nugetPackages, "Microsoft.Owin")#>" targetFramework="net45" />
         </packages>
     </WizardData>
