@@ -1,4 +1,4 @@
-﻿net46<#@ template hostspecific="true" language="C#" #>
+﻿<#@ template hostspecific="true" language="C#" #>
 <# string NugetVersion = this.Host.ResolveParameterValue("", "", "NugetVersion"); #>
 <#@ output extension=".vstemplate" #>
 <#@ assembly name="System.Core" #>
