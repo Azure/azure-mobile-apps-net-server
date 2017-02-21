@@ -19,6 +19,7 @@ using Microsoft.Azure.NotificationHubs;
 using Microsoft.Azure.NotificationHubs.Messaging;
 using Moq;
 using Xunit;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Microsoft.WindowsAzure.Mobile.Service
 {

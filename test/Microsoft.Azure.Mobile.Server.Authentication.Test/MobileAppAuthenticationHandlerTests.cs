@@ -15,6 +15,7 @@ using Microsoft.Owin.Security;
 using Moq;
 using TestUtilities;
 using Xunit;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Microsoft.Azure.Mobile.Server.Security
 {

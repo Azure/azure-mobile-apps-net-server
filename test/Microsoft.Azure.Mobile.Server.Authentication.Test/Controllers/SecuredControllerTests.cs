@@ -19,6 +19,7 @@ using Microsoft.Owin.Testing;
 using Newtonsoft.Json.Linq;
 using Owin;
 using Xunit;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Microsoft.Azure.Mobile.Server
 {

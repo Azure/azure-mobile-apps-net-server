@@ -10,6 +10,8 @@ using System.ServiceModel.Security.Tokens;
 using System.Web.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Microsoft.Azure.Mobile.Server.Authentication
 {
@@ -121,7 +123,7 @@ namespace Microsoft.Azure.Mobile.Server.Authentication
             {
                 claimsPrincipal = ValidateToken(validationParameters, tokenValue, secretKey);
             }
-            catch (SecurityTokenException)
+            catch (IdentityModel.Tokens.SecurityTokenException)
             {
                 // can happen if the token fails validation for any reason,
                 // e.g. wrong signature, etc.
@@ -185,10 +187,10 @@ namespace Microsoft.Azure.Mobile.Server.Authentication
 
         internal static ClaimsPrincipal ValidateToken(TokenValidationParameters validationParams, string tokenString, string secretKey)
         {
-            validationParams.IssuerSigningToken = new BinarySecretSecurityToken(HmacSigningCredentials.ParseKeyString(secretKey));
+            validationParams.IssuerSigningKey = new IdentityModel.Tokens.SymmetricSecurityKey(HmacSigningCredentials.ParseKeyString(secretKey));
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-            SecurityToken validatedToken = null;
+			IdentityModel.Tokens.SecurityToken validatedToken = null;
 
             return tokenHandler.ValidateToken(tokenString, validationParams, out validatedToken);
         }
