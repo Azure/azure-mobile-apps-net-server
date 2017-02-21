@@ -19,6 +19,7 @@ using Microsoft.Azure.Mobile.Server.Login;
 using Moq;
 using Newtonsoft.Json;
 using Xunit;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Microsoft.Azure.Mobile.Server.Security
 {

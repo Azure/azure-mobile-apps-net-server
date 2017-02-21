@@ -14,6 +14,7 @@ using System.Web.Http;
 using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Authentication.AppService;
 using Microsoft.Azure.Mobile.Server.Properties;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace System.Security.Principal
 {
