@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>This is sample project for parallel testing with Microsoft Azure Batch. You may need to update the nugget path and msbuild path in build step, and update Azure Batch and Storage account in parallel testing step.</description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.4">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/azurebatch/azure-mobile-apps-net-server.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/feature/init</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>D:\tools\nuget.exe restore ServerSDK.sln&#xd;
+&#xd;
+</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>&quot;C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe&quot; ServerSDK.sln</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <com.microsoft.azurebatch.jenkins.TestInParallelPostBuild plugin="parallel-azure-batch@0.1">
+      <batchAccount>my batch account</batchAccount>
+      <storageAccount>test storage account</storageAccount>
+      <projectConfigFilePath>batchtest/SampleProjectSettings.json</projectConfigFilePath>
+      <splitConfigFilePath>batchtest/SampleSplitterConfig.json</splitConfigFilePath>
+      <enableVmUtilizationProfiler>true</enableVmUtilizationProfiler>
+    </com.microsoft.azurebatch.jenkins.TestInParallelPostBuild>
+    <xunit plugin="xunit@1.102">
+      <types>
+        <XUnitDotNetTestType>
+          <pattern>azurebatchtemp/**/*result.xml</pattern>
+          <skipNoTestFiles>false</skipNoTestFiles>
+          <failIfNotNew>true</failIfNotNew>
+          <deleteOutputFiles>false</deleteOutputFiles>
+          <stopProcessingIfError>true</stopProcessingIfError>
+        </XUnitDotNetTestType>
+      </types>
+      <thresholds>
+        <org.jenkinsci.plugins.xunit.threshold.FailedThreshold>
+          <unstableThreshold>48</unstableThreshold>
+          <unstableNewThreshold>48</unstableNewThreshold>
+          <failureThreshold>48</failureThreshold>
+          <failureNewThreshold>48</failureNewThreshold>
+        </org.jenkinsci.plugins.xunit.threshold.FailedThreshold>
+        <org.jenkinsci.plugins.xunit.threshold.SkippedThreshold>
+          <unstableThreshold>0</unstableThreshold>
+          <unstableNewThreshold>0</unstableNewThreshold>
+          <failureThreshold>0</failureThreshold>
+          <failureNewThreshold>0</failureNewThreshold>
+        </org.jenkinsci.plugins.xunit.threshold.SkippedThreshold>
+      </thresholds>
+      <thresholdMode>1</thresholdMode>
+      <extraConfiguration>
+        <testTimeMargin>3000</testTimeMargin>
+      </extraConfiguration>
+    </xunit>
+  </publishers>
+  <buildWrappers/>
+</project>

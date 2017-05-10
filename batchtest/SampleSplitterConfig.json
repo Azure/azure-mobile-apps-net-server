@@ -1,0 +1,73 @@
+{
+    "version": "0.1",
+    "dictionary":[
+        {
+            "key": "$xunitPath",
+            "value": "%AZ_BATCH_NODE_SHARED_DIR%\\xunit.runner.console.2.1.0\\tools\\xunit.console.exe"
+        },
+        {
+            "key": "$binaryFolder$",
+            "value": "%AZ_BATCH_NODE_SHARED_DIR%\\Debug\\"
+        },
+        {
+            "key": "$outputResult$",
+            "value": "-xml testresult.xml"
+        }
+    ],
+    "jobConfigs": {
+        "jobTimeoutInMinutes": 30,
+        "defaultTaskTimeoutInMinutes": 10,
+        "tasks": [
+            {
+                "name": "Authentication Test",
+                "commands" : [
+                    "$xunitPath $binaryFolder$Microsoft.Azure.Mobile.Server.Authentication.Test.dll $outputResult$"
+                ],
+                "timeOutMinutes" : "5"
+            },
+            {
+                "name": "CrossDomain Test",
+                "commands" : [
+                    "$xunitPath $binaryFolder$Microsoft.Azure.Mobile.Server.CrossDomain.Test.dll $outputResult$",
+                    ""
+                ]
+            },
+            {
+                "name": "Entity Test",
+                "commands" : [
+                    "$xunitPath $binaryFolder$Microsoft.Azure.Mobile.Server.Entity.Test.dll $outputResult$"
+                ]
+            },
+            {
+                "name": "Home Test",
+                "commands" : [
+                    "$xunitPath $binaryFolder$Microsoft.Azure.Mobile.Server.Home.Test.dll $outputResult$"
+                ]
+            },
+            {
+                "name": "Login Test",
+                "commands" : [
+                    "$xunitPath $binaryFolder$Microsoft.Azure.Mobile.Server.Login.Test.dll $outputResult$"
+                ]
+            },
+            {
+                "name": "Notifications Test",
+                "commands" : [
+                    "$xunitPath $binaryFolder$Microsoft.Azure.Mobile.Server.Notifications.Test.dll $outputResult$"
+                ]
+            },
+            {
+                "name": "Quickstart Test",
+                "commands" : [
+                    "$xunitPath $binaryFolder$Microsoft.Azure.Mobile.Server.Quickstart.Test.dll $outputResult$"
+                ]
+            },
+            {
+                "name": "Server Test",
+                "commands" : [
+                    "$xunitPath $binaryFolder$Microsoft.Azure.Mobile.Server.Test.dll $outputResult$"
+                ]
+            }
+        ]
+    }
+}

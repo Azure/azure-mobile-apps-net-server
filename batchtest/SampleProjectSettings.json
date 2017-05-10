@@ -1,0 +1,28 @@
+{
+    "version": "0.1",
+    "vmConfigs": {
+        "numVMs": 2,
+        "maxTasksPerNode": 1,
+        "osFamily": "4",
+        "targetOSVersion": "*",
+        "vmSize": "small",
+        "poolKeepAlive": true,
+        "vmSetupCommandLine": "cmd /c %AZ_BATCH_NODE_SHARED_DIR%\\SampleVMSetup.cmd"
+    },
+    "resources": {
+        "localResources": [
+            {
+                "source": "bin\\debug"
+            },
+            {
+                "source": "batchtest\\SampleVMSetup.cmd"
+            }
+        ]
+    },
+    "testConfigs": {
+        "resultFilePatterns": [
+            "*.xml"
+        ],
+        "resultFilesSaveToFolder": "azurebatchtemp\\results"
+    }
+}
