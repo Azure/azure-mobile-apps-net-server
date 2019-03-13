@@ -79,9 +79,9 @@ namespace ZumoE2EServerApp.Controllers
                     }
                     var result = await this.pushClient.SendAsync(message);
                 }
-                else if (type == "gcm")
+                else if (type == "fcm")
                 {
-                    GooglePushMessage message = new GooglePushMessage();
+                    FirebasePushMessage message = new FirebasePushMessage();
                     message.JsonPayload = payloadString;
                     if (tag != null)
                     {

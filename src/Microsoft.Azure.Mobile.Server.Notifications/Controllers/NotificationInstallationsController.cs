@@ -36,7 +36,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         private const string WindowsStorePlatform = "wns";
         private const string ApplePlatform = "apns";
         private const string MicrosoftPushPlatform = "mpns";
-        private const string GooglePlatform = "gcm";
+        private const string GooglePlatform = "fcm";
 
         private PushClient pushClient = null;
 
@@ -370,17 +370,18 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
             {
                 installation.Platform = NotificationPlatform.Wns;
 
-                // Parse each Secondary Tile passed in request and add to installation object.
-                foreach (string tileName in notificationInstallation.SecondaryTiles.Keys)
-                {
-                    NotificationSecondaryTile notificationTile = notificationInstallation.SecondaryTiles[tileName];
-                    if (installation.SecondaryTiles == null)
-                    {
-                        installation.SecondaryTiles = new Dictionary<string, WnsSecondaryTile>();
-                    }
+                //// Parse each Secondary Tile passed in request and add to installation object.
+                //foreach (string tileName in notificationInstallation.SecondaryTiles.Keys)
+                //{
+                //    NotificationSecondaryTile notificationTile = notificationInstallation.SecondaryTiles[tileName];
 
-                    installation.SecondaryTiles[tileName] = CreateWnsSecondaryTile(notificationTile);
-                }
+                //    if (installation.SecondaryTiles == null)
+                //    {
+                //        installation.SecondaryTiles = new Dictionary<string, WnsSecondaryTile>();
+                //    }
+
+                //    installation.SecondaryTiles[tileName] = CreateWnsSecondaryTile(notificationTile);
+                //}
             }
             else if (notificationInstallation.Platform.Equals(ApplePlatform, StringComparison.OrdinalIgnoreCase))
             {
@@ -388,7 +389,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
             }
             else if (notificationInstallation.Platform.Equals(GooglePlatform, StringComparison.OrdinalIgnoreCase))
             {
-                installation.Platform = NotificationPlatform.Gcm;
+                installation.Platform = NotificationPlatform.Fcm;
             }
             else
             {
@@ -443,8 +444,6 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
             {
                 InstallationTemplate installationTemplate = new InstallationTemplate();
 
-                // strip tags
-                installationTemplate.Tags = new List<string>();
                 installationTemplate.Body = notificationTemplate.Body;
                 if (platform == NotificationPlatform.Wns)
                 {
