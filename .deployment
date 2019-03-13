@@ -1,2 +1,2 @@
 ﻿[config]
-project = e2etest
+project = e2etest/ZumoE2EServerApp.csproj
