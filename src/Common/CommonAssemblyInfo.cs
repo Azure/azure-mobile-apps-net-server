@@ -17,6 +17,6 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyMetadata("Serviceable", "True")]
 
-[assembly: AssemblyVersion("2.0.4")]
-[assembly: AssemblyFileVersion("2.0.4")]
-[assembly: AssemblyInformationalVersion("2.0.4")]
+[assembly: AssemblyVersion("2.0.5.1")]
+[assembly: AssemblyFileVersion("2.0.5.1")]
+[assembly: AssemblyInformationalVersion("2.0.5.1")]

@@ -247,7 +247,7 @@ namespace Microsoft.Azure.Mobile.Server.Notifications
                 }
                 notification = new AppleNotification(message.ToString(), expiration);
             }
-            else if (message is FirebasePushMessage)
+            else if (message is GooglePushMessage)
             {
                 notification = new FcmNotification(message.ToString());
             }
@@ -291,7 +291,7 @@ namespace Microsoft.Azure.Mobile.Server.Notifications
                 typeof(WindowsPushMessage).Name,
                 typeof(MpnsPushMessage).Name,
                 typeof(ApplePushMessage).Name,
-                typeof(FirebasePushMessage).Name,
+                typeof(GooglePushMessage).Name,
                 typeof(TemplatePushMessage).Name);
             return RResources.NotificationHub_UnknownPayload.FormatForUser(message.GetType(), knownFormats);
         }

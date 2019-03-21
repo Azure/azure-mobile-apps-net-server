@@ -13,14 +13,14 @@ using Newtonsoft.Json;
 namespace Microsoft.Azure.Mobile.Server
 {
     /// <summary>
-    /// The <see cref="FirebasePushMessage"/> helps generating a notification payload targeting 
-    /// Firebase Cloud Messaging (FCM). Notifications can be sent using the <see cref="PushClient"/>
+    /// The <see cref="GooglePushMessage"/> helps generating a notification payload targeting 
+    /// Google Cloud Messaging (FCM). Notifications can be sent using the <see cref="PushClient"/>
     /// class.
     /// </summary>
     [SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly", Justification = "Expiration is not intended for serialization")]
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This describes a message.")]
     [Serializable]
-    public class FirebasePushMessage : Dictionary<string, object>, IPushMessage
+    public class GooglePushMessage : Dictionary<string, object>, IPushMessage
     {
         private const string CollapseKeyKey = "collapse_key";
         private const string DelayWhileIdleKey = "delay_while_idle";
@@ -35,18 +35,18 @@ namespace Microsoft.Azure.Mobile.Server
         };
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirebasePushMessage"/> class enabling creation
-        /// of a notification message targeting Firebase Cloud Messaging for Chrome (FCM).Set the 
+        /// Initializes a new instance of the <see cref="GooglePushMessage"/> class enabling creation
+        /// of a notification message targeting Google Cloud Messaging for Chrome (FCM).Set the 
         /// appropriate properties on the message and submit through the <see cref="PushClient"/>
         /// </summary>
-        public FirebasePushMessage()
+        public GooglePushMessage()
             : base(StringComparer.OrdinalIgnoreCase)
         {
             this[DataKey] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirebasePushMessage"/> class with a given
+        /// Initializes a new instance of the <see cref="GooglePushMessage"/> class with a given
         /// set of <paramref name="data"/> parameters and an optional <paramref name="timeToLive"/>.
         /// </summary>
         /// <param name="data"></param>
@@ -54,7 +54,7 @@ namespace Microsoft.Azure.Mobile.Server
         /// parameter must be a duration from 0 to 2,419,200 seconds (28 days), and it corresponds to the maximum period of time 
         /// for which FCM will store and try to deliver the message. Requests that don't contain this field default 
         /// to the maximum period of 4 weeks.</param>
-        public FirebasePushMessage(IDictionary<string, string> data, TimeSpan? timeToLive)
+        public GooglePushMessage(IDictionary<string, string> data, TimeSpan? timeToLive)
             : this()
         {
             if (data == null)
@@ -84,11 +84,11 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirebasePushMessage"/> class with the specified serialization information and streaming context.
+        /// Initializes a new instance of the <see cref="GooglePushMessage"/> class with the specified serialization information and streaming context.
         /// </summary>
-        /// <param name="info">A <see cref="SerializationInfo"/> containing information about the <see cref="FirebasePushMessage"/> to be initialized.</param>
+        /// <param name="info">A <see cref="SerializationInfo"/> containing information about the <see cref="GooglePushMessage"/> to be initialized.</param>
         /// <param name="context">A <see cref="StreamingContext"/> that indicates the source destination and context information of a serialized stream.</param>
-        protected FirebasePushMessage(SerializationInfo info, StreamingContext context)
+        protected GooglePushMessage(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
             this[DataKey] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -160,13 +160,13 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         /// <summary>
-        /// As an alternative to building the notification by initializing the <see cref="FirebasePushMessage"/> directly, 
+        /// As an alternative to building the notification by initializing the <see cref="GooglePushMessage"/> directly, 
         /// it is possible to provide a complete JSON representation which will be sent to the Notification Hub unaltered.
         /// </summary>
         public string JsonPayload { get; set; }
 
         /// <summary>
-        /// Provides a JSON encoded representation of this <see cref="FirebasePushMessage"/>
+        /// Provides a JSON encoded representation of this <see cref="GooglePushMessage"/>
         /// </summary>
         /// <returns>A JSON encoded string.</returns>
         public override string ToString()
