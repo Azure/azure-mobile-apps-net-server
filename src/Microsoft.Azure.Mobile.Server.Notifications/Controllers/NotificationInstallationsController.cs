@@ -225,16 +225,6 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         /// <param name="copyUserId">True to copy the UserId tag. False, otherwise.</param>
         internal static void CopyTagsToInstallation(Installation installation, HashSet<string> tags, bool copyUserId)
         {
-            //if (tags == null)
-            //{
-            //    installation.Tags.Clear();
-            //    return;
-            //}
-
-            //if (tags.Count < 1)
-            //{
-            //    installation.Tags = new List<string>();
-            //}
 
             foreach (string tag in tags)
             {

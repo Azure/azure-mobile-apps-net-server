@@ -44,10 +44,6 @@ namespace Microsoft.Azure.Mobile.Server.Notifications
         public string Platform { get; set; }
 
 
-
-        [JsonProperty(PropertyName = "expirationTime", NullValueHandling = NullValueHandling.Ignore)]
-        public string ExpirationTime { get; set; }
-
         /// <summary>
         /// A dictionary of template names to <see cref="NotificationTemplate"/> objects.
         /// </summary>

@@ -92,26 +92,6 @@ namespace Microsoft.WindowsAzure.Mobile.Service
             }
         }
 
-        [Fact]
-        public void CopyTagsToInstallation_DoesNotThrowForEmptyTagsSet()
-        {
-            Installation installation = MakeTestInstallation();
-            HashSet<string> tags = new HashSet<string>();
-            NotificationInstallationsControllerMock.CopyTagsToInstallation(installation, tags, true);
-            IList<string> tagsOutput = installation.Tags;
-            Assert.NotNull(tagsOutput);
-            Assert.True(tagsOutput.Count == 0);
-        }
-
-        [Fact]
-        public void CopyTagsToInstallation_DoesNotThrowForNullTags()
-        {
-            Installation installation = MakeTestInstallation();
-            NotificationInstallationsControllerMock.CopyTagsToInstallation(installation, null, true);
-            IList<string> tagsOutput = installation.Tags;
-            Assert.Null(tagsOutput);
-        }
-
         private static Installation MakeTestInstallation()
         {
             return new Installation
@@ -556,7 +536,7 @@ namespace Microsoft.WindowsAzure.Mobile.Service
             Assert.NotNull(installation);
             Assert.Equal(notification.InstallationId, installation.InstallationId);
             Assert.Equal(notification.PushChannel, installation.PushChannel);
-            Assert.Equal(3, installation.Tags.Count());
+            Assert.Equal(4, installation.Tags.Count());
 
             // verify the existing userid is removed and replaced with current
             Assert.Equal("_UserId:my:userid", installation.Tags[2]);
