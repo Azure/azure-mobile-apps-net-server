@@ -37,7 +37,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         private const string WindowsStorePlatform = "wns";
         private const string ApplePlatform = "apns";
         private const string MicrosoftPushPlatform = "mpns";
-        private const string GooglePlatform = "gcm";
+        private const string GooglePlatform = "fcm";
 
         private PushClient pushClient = null;
 
