@@ -38,8 +38,6 @@ namespace Microsoft.Azure.Mobile.Server.Notifications
         /// Where wns stands for "Windows Push Notification Services", and apns is "Apple Push Notification Service".
         /// </summary>
         [Required]
-        //[JsonConverter(typeof(GcmConverter))]
-        //[JsonProperty(PropertyName = "PLatform", ItemConverterType = typeof(string))]
         [JsonProperty(PropertyName = "platform")]
         public string Platform { get; set; }
 
@@ -66,6 +64,9 @@ namespace Microsoft.Azure.Mobile.Server.Notifications
                 this.templates = value;
             }
         }
+
+        [JsonProperty(PropertyName = "expirationTime")]
+        public string ExpirationTime { get; set; }
 
         /// <summary>
         /// A list of tags to register with this installation.
