@@ -143,6 +143,8 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
                     CopyTagsToInstallation(installation, tagsAssociatedWithInstallationId, true);
                 }
 
+                CopyTagsToInstallation(installation, tagsAssociatedWithInstallationId, true);
+
                 try
                 {
                     await this.UpsertInstallationAsync(installation);
@@ -211,16 +213,6 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         /// <param name="copyUserId">True to copy the UserId tag. False, otherwise.</param>
         internal static void CopyTagsToInstallation(Installation installation, HashSet<string> tags, bool copyUserId)
         {
-            if (tags == null)
-            {
-                installation.Tags = null;
-                return;
-            }
-
-            if (tags.Count < 1)
-            {
-                installation.Tags = new List<string>();
-            }
 
             foreach (string tag in tags)
             {
@@ -244,6 +236,14 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
                         AddTagToInstallation(installation, tag);
                     }
                 }
+            }
+        }
+
+        internal static void CopyAllTagsToInstallation(Installation installation, IList<string> tags)
+        {
+            foreach (string tag in tags)
+            {
+                AddTagToInstallation(installation, tag);
             }
         }
 
