@@ -52,7 +52,7 @@ namespace Microsoft.Azure.Mobile.Server.Notifications
                     { new MpnsPushMessage(new IconicTile()), typeof(MpnsNotification) },
                     { new MpnsPushMessage(new Toast()), typeof(MpnsNotification) },
                     { new ApplePushMessage(), typeof(AppleNotification) },
-                    { new GooglePushMessage(), typeof(GcmNotification) },
+                    { new FirebasePushMessage(), typeof(FcmNotification) },
                     { new TemplatePushMessage(), typeof(TemplateNotification) },
                 };
             }
