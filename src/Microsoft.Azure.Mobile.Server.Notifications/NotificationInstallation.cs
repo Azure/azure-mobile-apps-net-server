@@ -30,6 +30,8 @@ namespace Microsoft.Azure.Mobile.Server.Notifications
         [Required]
         public string Platform { get; set; }
 
+        public string ExpirationTime { get; set; }
+
         /// <summary>
         /// The device installation id to register.
         /// </summary>

@@ -80,6 +80,9 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
 
             // The installation object that will be sent to NH.
             Installation installation = this.CreateInstallation(notificationInstallation);
+
+            CopyAllTagsToInstallation(installation, notificationInstallation.Tags);
+
             HashSet<string> tagsAssociatedWithInstallationId = await this.GetTagsAssociatedWithInstallationId(notificationInstallation.InstallationId);
             ClaimsPrincipal serviceUser = this.User as ClaimsPrincipal;
             if (tagsAssociatedWithInstallationId.Count == 0)
