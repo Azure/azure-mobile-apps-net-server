@@ -60,7 +60,7 @@ namespace Microsoft.Azure.Mobile
         }
 
         [Theory]
-        [MemberData("InvalidTokenData")]
+        [MemberData(nameof(InvalidTokenData))]
         public void ValidateToken_ThrowsOnInvalidInput(string input)
         {
             // Act
@@ -71,7 +71,7 @@ namespace Microsoft.Azure.Mobile
         }
 
         [Theory]
-        [MemberData("QuotedStringData")]
+        [MemberData(nameof(QuotedStringData))]
         public void GetQuotedString(string input, string expected)
         {
             // Act
@@ -82,7 +82,7 @@ namespace Microsoft.Azure.Mobile
         }
 
         [Theory]
-        [MemberData("UnquotedStringData")]
+        [MemberData(nameof(UnquotedStringData))]
         public void GetUnquotedString(string input, string expected)
         {
             // Act

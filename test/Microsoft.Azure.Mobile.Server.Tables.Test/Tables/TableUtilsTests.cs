@@ -47,7 +47,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("EffectivePageSize")]
+        [MemberData(nameof(EffectivePageSize))]
         public void GetResultSize_ReturnsEffectivePageSize(string top, int? pageSize, int expected)
         {
             // Arrange

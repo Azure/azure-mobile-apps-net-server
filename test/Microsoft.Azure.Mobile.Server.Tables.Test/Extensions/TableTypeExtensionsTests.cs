@@ -70,7 +70,7 @@ namespace System.Net.Http
         }
 
         [Theory]
-        [MemberData("ElementTypes")]
+        [MemberData(nameof(ElementTypes))]
         public void GetEnumerableElementType_ReturnsExpectedResult(Type type, Type expected)
         {
             Assert.Equal(expected, type.GetEnumerableElementType());
@@ -80,7 +80,7 @@ namespace System.Net.Http
         }
 
         [Theory]
-        [MemberData("ShortTypeNames")]
+        [MemberData(nameof(ShortTypeNames))]
         public void GetShortName_ReturnsExpectedResult(Type type, string expected)
         {
             Assert.Equal(expected, type.GetShortName());

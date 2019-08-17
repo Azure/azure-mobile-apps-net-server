@@ -40,7 +40,7 @@ namespace Microsoft.Azure.Mobile.Server.Serialization
         }
 
         [Theory]
-        [MemberData("CamelData")]
+        [MemberData(nameof(CamelData))]
         public void ResolverPropertyName_MakesCamelCase(string input, string expected)
         {
             // Act

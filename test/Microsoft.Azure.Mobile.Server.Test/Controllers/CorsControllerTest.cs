@@ -63,7 +63,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.True(response.Headers.Contains(ResponseOriginHeader));
-            Assert.Equal(response.Headers.GetValues(ResponseOriginHeader).FirstOrDefault(), "http://sample");
+            Assert.Equal("http://sample", response.Headers.GetValues(ResponseOriginHeader).FirstOrDefault());
         }
 
         private TestServer CreateTestServer()

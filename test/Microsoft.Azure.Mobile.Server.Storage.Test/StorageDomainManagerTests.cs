@@ -230,7 +230,7 @@ namespace Microsoft.Azure.Mobile.Server
             IEnumerable<Person> actual = await this.manager.QueryAsync(query);
 
             // Assert
-            Assert.Equal(1, actual.Count());
+            Assert.Single(actual);
             Assert.Equal(actual.First().Id, persons[0].Id);
         }
 
@@ -273,12 +273,12 @@ namespace Microsoft.Azure.Mobile.Server
             IEnumerable<Person> actual = await this.manager.QueryAsync(query);
 
             // Assert
-            Assert.Equal(1, actual.Count());
+            Assert.Single(actual);
             persons.Single(i => i.FirstName == actual.Single().FirstName);
         }
 
         [Theory]
-        [MemberData("SystemPropertyFilterData")]
+        [MemberData(nameof(SystemPropertyFilterData))]
         public async Task QueryAsync_Succeeds_WithSystemPropertiesInFilter(string filter, int expectedCount)
         {
             // Arrange
@@ -298,7 +298,7 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         [Theory]
-        [MemberData("DateTimeOffsetFilterData")]
+        [MemberData(nameof(DateTimeOffsetFilterData))]
         public void ReplaceDateTimeOffset_Succeeds_WithDateTimeOffsetInFilter(string inputFilter, string outputFilter)
         {
             string actualOutput = StorageDomainManager<Person>.ReplaceDateTimeOffsetWithDateTime(inputFilter);
@@ -340,7 +340,7 @@ namespace Microsoft.Azure.Mobile.Server
             IEnumerable<Person> actual = await this.manager.QueryAsync(query);
 
             // Assert
-            Assert.Equal(1, actual.Count());
+            Assert.Single(actual);
             foreach (Person a in actual)
             {
                 persons.Single(i => i.FirstName == a.FirstName);
@@ -381,7 +381,7 @@ namespace Microsoft.Azure.Mobile.Server
                 if (nextLinkUri != null)
                 {
                     // ensure that the root path has been maintained
-                    Assert.True(nextLinkUri.ToString().StartsWith(rootUri));
+                    Assert.StartsWith(rootUri, nextLinkUri.ToString());
                 }
             }
             while (nextLinkUri != null);
@@ -450,7 +450,7 @@ namespace Microsoft.Azure.Mobile.Server
 
             // Assert
             Assert.Equal(person.Id, lookedup.Id);
-            Assert.Equal(true, lookedup.Deleted);
+            Assert.True( lookedup.Deleted);
             Assert.Equal(person.FirstName, lookedup.FirstName);
             Assert.Equal(person.LastName, lookedup.LastName);
         }
@@ -613,7 +613,7 @@ namespace Microsoft.Azure.Mobile.Server
             // Assert
             Assert.Equal(Age, result.Age);
             Assert.NotNull(result.UpdatedAt);
-            Assert.Equal(result.Deleted, true);
+            Assert.True(result.Deleted);
         }
 
         [Fact]
@@ -761,7 +761,7 @@ namespace Microsoft.Azure.Mobile.Server
             Person lookedup = (await this.manager.LookupAsync(insertedPerson.Id)).Queryable.First();
 
             Assert.Equal(person.Id, lookedup.Id);
-            Assert.Equal(true, lookedup.Deleted);
+            Assert.True(lookedup.Deleted);
             Assert.Equal(person.FirstName, lookedup.FirstName);
             Assert.Equal(person.LastName, lookedup.LastName);
         }
@@ -939,7 +939,7 @@ namespace Microsoft.Azure.Mobile.Server
                 ODataQueryOptions query = new ODataQueryOptions(context, this.request);
 
                 IEnumerable<Person> actual = await isolatedManager.QueryAsync(query);
-                Assert.Equal(0, actual.Count());
+                Assert.Empty(actual);
 
                 Assert.True(isolatedManager.Table.Exists());
             }
@@ -950,7 +950,7 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         [Theory]
-        [MemberData("NextPageData")]
+        [MemberData(nameof(NextPageData))]
         public void SetNextPageLink_CreatesCorrectUri(string address, TableContinuationToken continuation, string expected)
         {
             // Arrange

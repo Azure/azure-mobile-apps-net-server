@@ -50,14 +50,14 @@ namespace Microsoft.Azure.Mobile
         }
 
         [Theory]
-        [MemberData("CamelData")]
+        [MemberData(nameof(CamelData))]
         public void ToCamelCase(string input, string expected)
         {
             Assert.Equal(expected, StringUtils.ToCamelCase(input));
         }
 
         [Theory]
-        [MemberData("PascalData")]
+        [MemberData(nameof(PascalData))]
         public void ToPascalCase(string input, string expected)
         {
             Assert.Equal(expected, StringUtils.ToPascalCase(input));

@@ -31,7 +31,7 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         [Theory]
-        [MemberData("ColumnTypeData")]
+        [MemberData(nameof(ColumnTypeData))]
         public void Property_IsMarkedWithColumnType<TProperty>(Expression<Func<EntityData, TProperty>> property, TableColumnType expected)
         {
             // Arrange

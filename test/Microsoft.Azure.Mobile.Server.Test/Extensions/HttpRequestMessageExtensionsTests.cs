@@ -104,7 +104,7 @@ namespace System.Net.Http
         }
 
         [Theory]
-        [MemberData("IsIfNoneMatch")]
+        [MemberData(nameof(IsIfNoneMatch))]
         public void IsIfNoneMatch_DetectsIfNonMatchRequests(IEnumerable<EntityTagHeaderValue> ifNoneMatchETags, EntityTagHeaderValue current, bool expected)
         {
             // Arrange
@@ -136,7 +136,7 @@ namespace System.Net.Http
         }
 
         [Theory]
-        [MemberData("ErrorMessages")]
+        [MemberData(nameof(ErrorMessages))]
         public void CreateNotFoundResponse_CreatesResponse(string format, object[] args)
         {
             // Arrange
@@ -153,7 +153,7 @@ namespace System.Net.Http
         }
 
         [Theory]
-        [MemberData("ErrorMessages")]
+        [MemberData(nameof(ErrorMessages))]
         public void CreateUnauthorizedResponse_CreatesResponse(string format, object[] args)
         {
             // Arrange
@@ -185,7 +185,7 @@ namespace System.Net.Http
         }
 
         [Theory]
-        [MemberData("ErrorMessages")]
+        [MemberData(nameof(ErrorMessages))]
         public void CreateBadRequestResponse_CreatesResponse(string format, object[] args)
         {
             // Arrange

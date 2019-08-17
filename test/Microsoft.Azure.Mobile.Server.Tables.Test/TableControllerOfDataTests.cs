@@ -72,8 +72,8 @@ namespace Microsoft.Azure.Mobile.Server
             controller1.DomainManager = domainManager1.Object;
 
             // Assert
-            Assert.Equal(true, domainManager1.Object.EnableSoftDelete);
-            Assert.Equal(false, domainManager1.Object.IncludeDeleted);
+            Assert.True(domainManager1.Object.EnableSoftDelete);
+            Assert.False(domainManager1.Object.IncludeDeleted);
         }
 
         [Fact]
@@ -85,8 +85,8 @@ namespace Microsoft.Azure.Mobile.Server
             controller1.DomainManager = domainManager1.Object;
 
             // Assert
-            Assert.Equal(false, domainManager1.Object.EnableSoftDelete);
-            Assert.Equal(true, domainManager1.Object.IncludeDeleted);
+            Assert.False(domainManager1.Object.EnableSoftDelete);
+            Assert.True(domainManager1.Object.IncludeDeleted);
         }
 
         [Fact]

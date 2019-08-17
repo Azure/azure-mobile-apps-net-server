@@ -40,7 +40,7 @@ namespace Microsoft.Azure.Mobile.Server.Swagger.Test
             Assert.Equal(1, operation.security.Count);
             Assert.Equal(1, operation.security[0].Keys.Count);
             Assert.Equal("facebook", operation.security[0].Keys.First());
-            Assert.Equal(0, operation.security[0]["facebook"].Count());
+            Assert.Empty(operation.security[0]["facebook"]);
         }
 
         [Fact]

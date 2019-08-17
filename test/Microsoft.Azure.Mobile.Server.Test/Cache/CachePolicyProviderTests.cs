@@ -111,7 +111,7 @@ namespace Microsoft.Azure.Mobile.Server.Cache
         }
 
         [Theory]
-        [MemberData("CacheControlOptions")]
+        [MemberData(nameof(CacheControlOptions))]
         public void SetCachePolicy_SetsCacheOptions(CacheOptions options, Func<HttpResponseMessage, bool> expected)
         {
             this.policy.Options = options;

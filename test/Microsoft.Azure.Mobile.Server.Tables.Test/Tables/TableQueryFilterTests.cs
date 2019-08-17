@@ -71,7 +71,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("ResponseTypes")]
+        [MemberData(nameof(ResponseTypes))]
         public void GetElementType_DetectsResponseTypeAttribute(Type returnType, Type responseType, Type expected)
         {
             // Arrange
@@ -92,7 +92,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("VersionToResponseData")]
+        [MemberData(nameof(VersionToResponseData))]
         public void AddETagResponseHeader_FindsETag(HttpContent content, string expected)
         {
             // Arrange
@@ -111,7 +111,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("VersionToETagData")]
+        [MemberData(nameof(VersionToETagData))]
         public void GetETagFromVersion_ConvertsETag(string version)
         {
             // Arrange

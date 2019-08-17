@@ -76,7 +76,7 @@ namespace System.Net.Http.Headers
         }
 
         [Theory]
-        [MemberData("Rfc5987Data")]
+        [MemberData(nameof(Rfc5987Data))]
         public void TitleStar_IsRfc5987Encoded(string input, string expected)
         {
             this.header.TitleStar = input;
@@ -85,7 +85,7 @@ namespace System.Net.Http.Headers
         }
 
         [Theory]
-        [MemberData("HeaderValues")]
+        [MemberData(nameof(HeaderValues))]
         public void ToString_WritesHeaderValue(dynamic input, string expected)
         {
             LinkHeaderValue link = new LinkHeaderValue(input.Address);

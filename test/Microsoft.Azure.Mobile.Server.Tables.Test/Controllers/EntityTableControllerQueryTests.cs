@@ -198,6 +198,7 @@ namespace Microsoft.Azure.Mobile.Server
             Assert.Equal("Bill & Ted's Excellent Adventure", result["name"]);
         }
         
+     
         public static void ValidateAllSystemProperties(JObject result)
         {
             foreach (var sysProp in TableHttpRequestMessageExtensions.SystemProperties)
@@ -206,7 +207,7 @@ namespace Microsoft.Azure.Mobile.Server
                 Assert.Null(result[sysProp.Value]);
             }
         }
-
+         
         public static void ValidateNoSystemProperties(JObject result)
         {
             foreach (var sysProp in TableHttpRequestMessageExtensions.SystemProperties)

@@ -48,7 +48,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("ControllerAddresses")]
+        [MemberData(nameof(ControllerAddresses))]
         public async Task GetFilters_AddsTableFilterBeforeQueryFilter_OnGetActions(string address)
         {
             // Act
@@ -59,7 +59,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("ControllerAddresses")]
+        [MemberData(nameof(ControllerAddresses))]
         public async Task GetFilters_AddsTableFilterBeforeQueryFilter_OnPostActions(string address)
         {
             // Act

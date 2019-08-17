@@ -567,7 +567,7 @@ namespace Microsoft.WindowsAzure.Mobile.Service
             Assert.NotNull(installation);
             Assert.Equal(notification.InstallationId, installation.InstallationId);
             Assert.Equal(notification.PushChannel, installation.PushChannel);
-            Assert.Equal(1, installation.Tags.Count());
+            Assert.Single(installation.Tags);
             Assert.Equal("_UserId:my:userid", installation.Tags[0]);
         }
 

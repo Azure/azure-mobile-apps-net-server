@@ -129,7 +129,7 @@ namespace Microsoft.Azure.Mobile.Server.Serialization
         }
 
         [Theory]
-        [MemberData("NonDeltaTypes")]
+        [MemberData(nameof(NonDeltaTypes))]
         public void CreateContract_DoesNotCallGetContractOnNonDeltaTypes(Type input)
         {
             // Act
@@ -141,7 +141,7 @@ namespace Microsoft.Azure.Mobile.Server.Serialization
         }
 
         [Theory]
-        [MemberData("DeltaTypes")]
+        [MemberData(nameof(DeltaTypes))]
         public void CreateContract_CallsGetContractOnDeltaTypes(Type input)
         {
             // Act
@@ -153,7 +153,7 @@ namespace Microsoft.Azure.Mobile.Server.Serialization
         }
 
         [Theory]
-        [MemberData("DeltaTypes")]
+        [MemberData(nameof(DeltaTypes))]
         public void CreateContract_UsesCacheOnDeltaTypes(Type input)
         {
             // Act
@@ -166,7 +166,7 @@ namespace Microsoft.Azure.Mobile.Server.Serialization
         }
 
         [Theory]
-        [MemberData("DeltaTestData")]
+        [MemberData(nameof(DeltaTestData))]
         public void DeltaOfT_Deserialization_Works(string input, IDictionary<string, object> expected)
         {
             // Arrange
@@ -188,7 +188,7 @@ namespace Microsoft.Azure.Mobile.Server.Serialization
         }
 
         [Theory]
-        [MemberData("DateTimeData")]
+        [MemberData(nameof(DateTimeData))]
         public void DateTime_Serialization_Works(string input, string expected)
         {
             // Arrange
@@ -208,7 +208,7 @@ namespace Microsoft.Azure.Mobile.Server.Serialization
         }
 
         [Theory]
-        [MemberData("DateTimeData")]
+        [MemberData(nameof(DateTimeData))]
         public void DateTimeOffset_Serialization_Works(string input, string expected)
         {
             // Arrange

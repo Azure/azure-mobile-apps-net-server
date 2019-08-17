@@ -116,7 +116,7 @@ namespace System.Collections.Generic
         }
 
         [Theory]
-        [MemberData("ObjectData")]
+        [MemberData(nameof(ObjectData))]
         public void DictionaryObjectObject_TryGetValue_FindsValue(object key)
         {
             // Arrange
@@ -146,7 +146,7 @@ namespace System.Collections.Generic
         }
 
         [Theory]
-        [MemberData("ObjectData")]
+        [MemberData(nameof(ObjectData))]
         public void DictionaryObjectObject_GetValueOrDefault_FindsValue(object key)
         {
             // Arrange
@@ -170,7 +170,7 @@ namespace System.Collections.Generic
         }
 
         [Theory]
-        [MemberData("StringData")]
+        [MemberData(nameof(StringData))]
         public void DictionaryStringObject_TryGetValue_FindsValue(string key)
         {
             // Arrange
@@ -200,7 +200,7 @@ namespace System.Collections.Generic
         }
 
         [Theory]
-        [MemberData("StringData")]
+        [MemberData(nameof(StringData))]
         public void DictionaryStringObject_GetValueOrDefault_FindsValue(string key)
         {
             // Arrange
@@ -224,7 +224,7 @@ namespace System.Collections.Generic
         }
 
         [Theory]
-        [MemberData("SetDataValues")]
+        [MemberData(nameof(SetDataValues))]
         public void DictionaryStringObject_SetOrClearValue_ClearsEntryIfDefaultValue<T>(T nonDefaultValue)
         {
             // Arrange
@@ -238,7 +238,7 @@ namespace System.Collections.Generic
         }
 
         [Theory]
-        [MemberData("StringData")]
+        [MemberData(nameof(StringData))]
         public void DictionaryStringObject_SetOrClearValue_SetsEntry(string value)
         {
             // Act
@@ -249,7 +249,7 @@ namespace System.Collections.Generic
         }
 
         [Theory]
-        [MemberData("StringData")]
+        [MemberData(nameof(StringData))]
         public void DictionaryStringString_GetValueOrDefault_FindsValue(string key)
         {
             // Arrange
@@ -273,7 +273,7 @@ namespace System.Collections.Generic
         }
 
         [Theory]
-        [MemberData("ConvertibleValues")]
+        [MemberData(nameof(ConvertibleValues))]
         public void DictionaryStringString_GetValueOrDefaultGeneric_FindsValue<T>(string value, T expected) where T : IConvertible
         {
             // Arrange
@@ -316,7 +316,7 @@ namespace System.Collections.Generic
         }
 
         [Theory]
-        [MemberData("TypeData")]
+        [MemberData(nameof(TypeData))]
         public void DictionaryTypeObject_TryGetValue_FindsValue(Type key)
         {
             // Arrange
@@ -346,7 +346,7 @@ namespace System.Collections.Generic
         }
 
         [Theory]
-        [MemberData("TypeData")]
+        [MemberData(nameof(TypeData))]
         public void DictionaryTypeObject_GetValueOrDefault_FindsValue(Type key)
         {
             // Arrange

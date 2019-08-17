@@ -48,7 +48,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("AuthStatusData")]
+        [MemberData(nameof(AuthStatusData))]
         public async Task MobileAppAuth_Succeeds_AsPassiveAndActive(AuthenticationMode mode, bool isMiddlewareRegistered, bool isAuthenticated)
         {
             NotificationInstallation notification = new NotificationInstallation();

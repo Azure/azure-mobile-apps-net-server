@@ -68,7 +68,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("CustomSettings")]
+        [MemberData(nameof(CustomSettings))]
         public void CustomSetting_Roundtrips(string key, string value)
         {
             // Arrange
@@ -82,7 +82,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("CustomSettings")]
+        [MemberData(nameof(CustomSettings))]
         public void Item_Roundtrips(string key, string value)
         {
             // Arrange
@@ -96,7 +96,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("UnknownKeys")]
+        [MemberData(nameof(UnknownKeys))]
         public void Item_Throws_KeyNotFoundException(string key)
         {
             KeyNotFoundException ex = Assert.Throws<KeyNotFoundException>(() => this.settings[key]);
@@ -105,7 +105,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("UnknownKeys")]
+        [MemberData(nameof(UnknownKeys))]
         public void Item_OnInterface_Throws_KeyNotFoundException(string key)
         {
             IDictionary<string, string> dictionary = (IDictionary<string, string>)this.settings;

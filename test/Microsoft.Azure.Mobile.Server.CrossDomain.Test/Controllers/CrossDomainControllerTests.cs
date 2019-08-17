@@ -107,7 +107,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         }
 
         [Theory]
-        [MemberData("OriginsData")]
+        [MemberData(nameof(OriginsData))]
         public async Task InitializeOrigins_CheckValues_IfEnabledGlobally(IEnumerable<string> origins)
         {
             // Arrange
@@ -140,7 +140,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         }
 
         [Theory]
-        [MemberData("OriginsData")]
+        [MemberData(nameof(OriginsData))]
         public async Task InitializeOrigins_CheckValues_IfPassedDirectly(IEnumerable<string> origins)
         {
             // Arrange

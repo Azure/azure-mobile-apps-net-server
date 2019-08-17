@@ -37,7 +37,7 @@ namespace System.Net.Http
         }
 
         [Theory]
-        [MemberData("ShortTypeNames")]
+        [MemberData(nameof(ShortTypeNames))]
         public void GetShortName_ReturnsExpectedResult(Type type, string expected)
         {
             Assert.Equal(expected, type.GetShortName());

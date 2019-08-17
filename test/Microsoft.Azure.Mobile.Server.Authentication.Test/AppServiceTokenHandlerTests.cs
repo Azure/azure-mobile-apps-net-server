@@ -143,7 +143,7 @@ namespace Microsoft.Azure.Mobile.Server.Security
         /// to generate the token, substituting a far out expiry.
         /// </summary>
         [Theory]
-        [MemberData("TokenData")]
+        [MemberData(nameof(TokenData))]
         public void TryValidateLoginToken_AcceptsPreviousTokenVersions(string tokenValue)
         {
             AppServiceAuthenticationOptions options = this.CreateTestOptions();
@@ -192,7 +192,7 @@ namespace Microsoft.Azure.Mobile.Server.Security
         }
 
         [Theory]
-        [MemberData("CreateUserIdData")]
+        [MemberData(nameof(CreateUserIdData))]
         public void CreateUserId_FormatsCorrectly(string providerName, string providerId)
         {
             // Arrange
@@ -212,7 +212,7 @@ namespace Microsoft.Azure.Mobile.Server.Security
         }
 
         [Theory]
-        [MemberData("ParseUserIdData")]
+        [MemberData(nameof(ParseUserIdData))]
         public void TryParseUserId(string userId, bool expected, string providerName, string providerId)
         {
             // Arrange

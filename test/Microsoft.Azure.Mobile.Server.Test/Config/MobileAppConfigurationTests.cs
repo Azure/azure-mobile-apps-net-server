@@ -75,14 +75,14 @@ namespace Microsoft.Azure.Mobile.Server.Config
                 .ApplyTo(config);
 
             // Assert
-            Assert.Equal(1, config.Routes.Count);
+            Assert.Single(config.Routes);
 
             var route = config.Routes[0];
             Assert.Equal("api/{controller}/{id}", route.RouteTemplate);
             Assert.Equal(1, route.Constraints.Count);
             var constraint = route.Constraints["controller"] as SetRouteConstraint<string>;
             Assert.NotNull(constraint);
-            Assert.Equal(false, constraint.Excluded);
+            Assert.False(constraint.Excluded);
             Assert.Equal(new[] { "Mobile1", "Mobile2", "Mobile3" }, constraint.Set);
         }
 
@@ -110,14 +110,14 @@ namespace Microsoft.Azure.Mobile.Server.Config
             mobileAppConfig.ApplyTo(config);
 
             // Assert
-            Assert.Equal(1, config.Routes.Count);
+            Assert.Single(config.Routes);
 
             var route = config.Routes[0];
             Assert.Equal("api/{controller}/{id}", route.RouteTemplate);
             Assert.Equal(1, route.Constraints.Count);
             var constraint = route.Constraints["controller"] as SetRouteConstraint<string>;
             Assert.NotNull(constraint);
-            Assert.Equal(false, constraint.Excluded);
+            Assert.False(constraint.Excluded);
             Assert.Equal(new[] { "Mobile1" }, constraint.Set);
         }
 
@@ -131,12 +131,12 @@ namespace Microsoft.Azure.Mobile.Server.Config
             mobileAppConfig.AddBaseRouteExclusion("mobileapp");
 
             // Assert
-            Assert.Equal(1, mobileAppConfig.BaseRouteConstraints.Count);
+            Assert.Single(mobileAppConfig.BaseRouteConstraints);
 
             // verify that comparisons are case-insensitive
-            Assert.True(mobileAppConfig.BaseRouteConstraints.Contains("MobileApp"));
-            Assert.True(mobileAppConfig.BaseRouteConstraints.Contains("mobileapp"));
-            Assert.True(mobileAppConfig.BaseRouteConstraints.Contains("MOBILEAPP"));
+            Assert.Contains("MobileApp", mobileAppConfig.BaseRouteConstraints);
+            Assert.Contains("mobileapp", mobileAppConfig.BaseRouteConstraints);
+            Assert.Contains("MOBILEAPP", mobileAppConfig.BaseRouteConstraints);
         }
 
         private static void SetupMockControllerList(HttpConfiguration config, ICollection<Type> controllerTypesToReturn)

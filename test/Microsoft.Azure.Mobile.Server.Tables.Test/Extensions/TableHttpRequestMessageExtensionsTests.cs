@@ -187,7 +187,7 @@ namespace System.Web.Http
         }
 
         [Theory]
-        [MemberData("VersionETagData")]
+        [MemberData(nameof(VersionETagData))]
         public void GetVersionFromIfMatch_ReturnsVersion(EntityTagHeaderValue entityTag, string expected)
         {
             // Arrange
@@ -250,7 +250,7 @@ namespace System.Web.Http
         }
 
         [Theory]
-        [MemberData("QueryableFilterInfoData")]
+        [MemberData(nameof(QueryableFilterInfoData))]
         public void IsQueryableAction_DetectsQueryableActions(FilterInfo[] filterInfos, bool expected)
         {
             // Arrange
@@ -283,7 +283,7 @@ namespace System.Web.Http
         }
 
         [Theory]
-        [MemberData("TableModelTypes")]
+        [MemberData(nameof(TableModelTypes))]
         public void GetMappedModelProperties_ReturnsExpectedProperties(Type type, string[] expected)
         {
             // Act
@@ -329,7 +329,7 @@ namespace System.Web.Http
         }
 
         [Theory]
-        [MemberData("SelectData")]
+        [MemberData(nameof(SelectData))]
         public void SetSelectedProperties_SetsProperties(string originalQuery, Type type, ICollection<string> expectedProperties, string expectedQuery, bool expectedModified)
         {
             // Arrange
@@ -372,7 +372,7 @@ namespace System.Web.Http
         }
 
         [Theory]
-        [MemberData("QueryOptionData")]
+        [MemberData(nameof(QueryOptionData))]
         public void GetMappedModelProperties_ReturnsPascalCasedQueryProperties(string option, Type type, string expected)
         {
             // Arrange
@@ -386,7 +386,7 @@ namespace System.Web.Http
         }
 
         [Theory]
-        [MemberData("SystemPropertiesQueryOptionData")]
+        [MemberData(nameof(SystemPropertiesQueryOptionData))]
         public void TransformSystemProperties_TransformsSystemProperties(string option, IDictionary<string, string> map, string expected)
         {
             // Act

@@ -79,7 +79,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("GetTriggerData")]
+        [MemberData(nameof(GetTriggerData))]
         public void GetTrigger_CreatesValidTriggers(string tableName, string idColumnName, string updatedAtColumnName, string expected)
         {
             // Act
@@ -90,7 +90,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("GetColumnNames")]
+        [MemberData(nameof(GetColumnNames))]
         public void GetColumnName_CreatesValidNames(string escapedTableName, string columnName, string expected)
         {
             // Act
@@ -101,7 +101,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("GetTriggerNames")]
+        [MemberData(nameof(GetTriggerNames))]
         public void GetTriggerName_CreatesValidNames(string tableName, string expected)
         {
             // Act

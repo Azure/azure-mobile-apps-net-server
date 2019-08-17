@@ -48,7 +48,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("ValidationExceptions")]
+        [MemberData(nameof(ValidationExceptions))]
         public void GetValidationDescription_HandlesValidationErrors(DbEntityValidationException ex, string expected)
         {
             // Act
@@ -59,7 +59,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
         }
 
         [Theory]
-        [MemberData("ConflictData")]
+        [MemberData(nameof(ConflictData))]
         public void GetConflictStatusCode_ReturnsExpectedStatus(HttpRequestMessage request, HttpStatusCode expected)
         {
             // Act

@@ -73,9 +73,9 @@ namespace Microsoft.Azure.Mobile.Server.Swagger.Test
 
             Assert.NotNull(security);
             security = security as JArray;
-            Assert.Equal(1, security.Count());
+            Assert.Single(security);
             var securityDef = security[0];
-            Assert.Equal(1, securityDef.Count());
+            Assert.Single(securityDef);
             Assert.Equal("google", ((JProperty)securityDef.First).Name);
             Assert.Empty(securityDef["google"] as JArray);
         }

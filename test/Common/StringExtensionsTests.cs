@@ -27,7 +27,7 @@ namespace System
         }
 
         [Theory]
-        [MemberData("SplitAndTrimData")]
+        [MemberData(nameof(SplitAndTrimData))]
         public void SplitAndTrim_ReturnsExpectedResult(string input, string[] expected)
         {
             // Act

@@ -83,7 +83,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         }
 
         [Theory]
-        [MemberData("ValidVersions")]
+        [MemberData(nameof(ValidVersions))]
         public async Task CorrectVersion_Header_Success(string version)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/cors/test");
@@ -94,7 +94,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         }
 
         [Theory]
-        [MemberData("ValidVersions")]
+        [MemberData(nameof(ValidVersions))]
         public async Task CorrectVersion_QueryString_Success(string version)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/cors/test?" + ZumoAPIVersion + "=" + version);
@@ -114,7 +114,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         }
 
         [Theory]
-        [MemberData("ApiVersionCasings")]
+        [MemberData(nameof(ApiVersionCasings))]
         public async Task CorrectVersionAnyCase_Header_Success(string headerName)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/cors/test");
@@ -125,7 +125,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         }
 
         [Theory]
-        [MemberData("ApiVersionCasings")]
+        [MemberData(nameof(ApiVersionCasings))]
         public async Task CorrectVersionAnyCase_QueryString_Success(string queryStringName)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/cors/test?" + queryStringName + "=" + CurrentZumoAPIVersion);
@@ -135,7 +135,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         }
 
         [Theory]
-        [MemberData("InvalidVersions")]
+        [MemberData(nameof(InvalidVersions))]
         public async Task IncorrectVersion_Header_Errors(string version)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/cors/test");
@@ -146,7 +146,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         }
 
         [Theory]
-        [MemberData("InvalidVersions")]
+        [MemberData(nameof(InvalidVersions))]
         public async Task IncorrectVersion_QueryString_Errors(string version)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/cors/test");

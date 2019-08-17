@@ -33,7 +33,7 @@ namespace Microsoft.Azure.Mobile.Server.Swagger.Test
         }
 
         [Theory]
-        [MemberData("FilterDataSet")]
+        [MemberData(nameof(FilterDataSet))]
         public void HeaderFilter_AddsHeaderRequirement(Collection<IFilter> filters)
         {
             // Arrange

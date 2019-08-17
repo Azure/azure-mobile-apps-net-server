@@ -110,7 +110,7 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         [Theory]
-        [MemberData("ParseValidKeyValues")]
+        [MemberData(nameof(ParseValidKeyValues))]
         public void Parse_SucceedsOnValidKeys(string key, string[] expectedSubkeys)
         {
             // Act
@@ -121,14 +121,14 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         [Theory]
-        [MemberData("ParseInvalidKeyValues")]
+        [MemberData(nameof(ParseInvalidKeyValues))]
         public void Parse_ThrowsOnInvalidKeys(string key)
         {
             Assert.Throws<ArgumentException>(() => CompositeTableKey.Parse(key));
         }
 
         [Theory]
-        [MemberData("ParseValidKeyValues")]
+        [MemberData(nameof(ParseValidKeyValues))]
         public void TryParse_SucceedsOnValidKeys(string key, string[] expectedSegments)
         {
             // Act
@@ -141,7 +141,7 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         [Theory]
-        [MemberData("ParseInvalidKeyValues")]
+        [MemberData(nameof(ParseInvalidKeyValues))]
         public void TryParse_FailsOnInvalidKeys(string key)
         {
             // Act
@@ -154,7 +154,7 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         [Theory]
-        [MemberData("GenerateKeys")]
+        [MemberData(nameof(GenerateKeys))]
         public void ToString_GeneratesCorrectTableKey(string[] segments, string expectedKey)
         {
             // Arrange
@@ -168,7 +168,7 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         [Theory]
-        [MemberData("KeysRoundtrip")]
+        [MemberData(nameof(KeysRoundtrip))]
         public void ToStringAndParse_Roundtrips(string[] expectedSegments)
         {
             // Arrange

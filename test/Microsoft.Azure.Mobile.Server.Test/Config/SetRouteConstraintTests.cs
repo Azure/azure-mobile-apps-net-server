@@ -35,7 +35,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("BoolDataSet", MemberType = typeof(TestDataSets))]
+        [MemberData(nameof(BoolDataSet), MemberType = typeof(TestDataSets))]
         public void SetRouteConstraint_InitializesParameters(bool excluded)
         {
             var constraint = new SetRouteConstraint<string>(this.testSet, excluded);
@@ -44,7 +44,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("MatchData")]
+        [MemberData(nameof(MatchData))]
         public void Match_FindsMatches(string parameterName, IDictionary<string, object> values, bool excluded, bool match)
         {
             // Arrange

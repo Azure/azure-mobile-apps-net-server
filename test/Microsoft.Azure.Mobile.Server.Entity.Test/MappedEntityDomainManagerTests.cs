@@ -135,7 +135,7 @@ namespace Microsoft.Azure.Mobile.Server
             IEnumerable<Movie> actual = this.manager.Query().ToArray();
 
             // Assert
-            Assert.Equal(1, actual.Count());
+            Assert.Single(actual);
             Assert.Equal(actual.First().Id, movies[0].Id);
         }
 
@@ -190,7 +190,7 @@ namespace Microsoft.Azure.Mobile.Server
             Movie lookedup = this.manager.Lookup(movie.Id).Queryable.First();
 
             Assert.Equal(movie.Id, lookedup.Id);
-            Assert.Equal(true, lookedup.Deleted);
+            Assert.True(lookedup.Deleted);
             Assert.Equal(movie.Name, lookedup.Name);
             Assert.Equal(movie.Category, lookedup.Category);
         }
@@ -563,7 +563,7 @@ namespace Microsoft.Azure.Mobile.Server
             lookedup = this.manager.Lookup(movie.Id).Queryable.First();
 
             Assert.Equal(movie.Id, lookedup.Id);
-            Assert.Equal(true, lookedup.Deleted);
+            Assert.True(lookedup.Deleted);
             Assert.Equal(movie.Name, lookedup.Name);
             Assert.Equal(movie.Category, lookedup.Category);
         }

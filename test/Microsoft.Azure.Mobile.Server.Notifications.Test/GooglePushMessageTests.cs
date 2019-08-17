@@ -67,7 +67,7 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         [Theory]
-        [MemberData("CtorData")]
+        [MemberData(nameof(CtorData))]
         public void GooglePushMessage_DataTimeToLive_SetsDataAndTimeToLive(IDictionary<string, string> data, TimeSpan? timeToLive)
         {
             // Act

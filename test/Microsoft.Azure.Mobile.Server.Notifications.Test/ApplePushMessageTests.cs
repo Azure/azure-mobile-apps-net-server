@@ -99,7 +99,7 @@ namespace Microsoft.Azure.Mobile.Server
         }
 
         [Theory]
-        [MemberData("CtorData")]
+        [MemberData(nameof(CtorData))]
         public void ApplePushMessage_AlertExpiration_SetsAlertAndExpiration(string alert, TimeSpan? expiration)
         {
             // Act

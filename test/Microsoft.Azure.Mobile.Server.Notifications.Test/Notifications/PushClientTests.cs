@@ -156,7 +156,7 @@ namespace Microsoft.Azure.Mobile.Server.Notifications
         }
 
         [Theory]
-        [MemberData("PushMessages")]
+        [MemberData(nameof(PushMessages))]
         public void SendAsync_SendsValidNotification(IPushMessage message, Type expected)
         {
             // Arrange
@@ -176,7 +176,7 @@ namespace Microsoft.Azure.Mobile.Server.Notifications
         }
 
         [Theory]
-        [MemberData("PushMessages")]
+        [MemberData(nameof(PushMessages))]
         public void SendAsync_WithTagExpression_SendsValidNotification(IPushMessage message, Type expected)
         {
             // Arrange

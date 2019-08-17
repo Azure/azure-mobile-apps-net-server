@@ -139,7 +139,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("CacheResponses")]
+        [MemberData(nameof(CacheResponses))]
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "notUsed", Justification = "Part of test data")]
         public void SendAsync_PassesResponseThrough_IfNullCachePolicyProvider(HttpResponseMessage response, bool notUsed)
         {
@@ -155,7 +155,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("CallSetPolicy")]
+        [MemberData(nameof(CallSetPolicy))]
         public void SendAsync_CallsSetPolicy_IfCacheableMethodAndNoCacheHeadersPresent(HttpMethod method, HttpResponseMessage response, bool shouldCall)
         {
             // Arrange
@@ -171,7 +171,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("CacheableHttpMethods")]
+        [MemberData(nameof(CacheableHttpMethods))]
         public void IsCacheableMethod_ReturnsTrueForCacheableMethods(HttpMethod method, bool expected)
         {
             // Act
@@ -182,7 +182,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData("CacheResponses")]
+        [MemberData(nameof(CacheResponses))]
         public void HasCachingHeaders_ReturnsTrueWhenCacheControlOrExpiresIsPresent(HttpResponseMessage response, bool expected)
         {
             // Act
