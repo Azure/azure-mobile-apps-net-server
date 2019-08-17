@@ -356,7 +356,7 @@ namespace Microsoft.Azure.Mobile.Server
             // Assert
             Assert.Equal(movie.Id, result.Id);
             Assert.Equal(UpdatedCategory, result.Category);
-            Assert.Equal(result.Deleted, true);
+            Assert.True(result.Deleted);
         }
 
         [Fact]

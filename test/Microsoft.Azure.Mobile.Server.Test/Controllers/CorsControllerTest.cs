@@ -40,7 +40,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.True(response.Headers.Contains(ResponseOriginHeader));
-            Assert.Equal(response.Headers.GetValues(ResponseOriginHeader).FirstOrDefault(), "*");
+            Assert.Equal("*", response.Headers.GetValues(ResponseOriginHeader).FirstOrDefault());
         }
 
         [Fact]

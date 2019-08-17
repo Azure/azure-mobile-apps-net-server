@@ -141,7 +141,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         [Theory]
         [MemberData(nameof(CacheResponses))]
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "notUsed", Justification = "Part of test data")]
-        public void SendAsync_PassesResponseThrough_IfNullCachePolicyProvider(HttpResponseMessage response, bool notUsed)
+        public void SendAsync_PassesResponseThrough_IfNullCachePolicyProvider(HttpResponseMessage response)
         {
             // Arrange
             this.actionExecutedContext.Response = response;

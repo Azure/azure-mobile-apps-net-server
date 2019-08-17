@@ -35,7 +35,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
         }
 
         [Theory]
-        [MemberData(nameof(BoolDataSet), MemberType = typeof(TestDataSets))]
+        [MemberData(nameof(TestDataSets.BoolDataSet), MemberType = typeof(TestDataSets))]
         public void SetRouteConstraint_InitializesParameters(bool excluded)
         {
             var constraint = new SetRouteConstraint<string>(this.testSet, excluded);

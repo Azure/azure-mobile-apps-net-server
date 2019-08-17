@@ -137,7 +137,7 @@ namespace Microsoft.Azure.Mobile.Server.Config
             MobileAppSettingsDictionary actual = settingsProvider.GetMobileAppSettings();
 
             // Assert
-            Assert.Equal(actual["SampleKey"], "SampleValue");
+            Assert.Equal("SampleValue", actual["SampleKey"]);
         }
 
         private static bool IsSet<T>(T value)

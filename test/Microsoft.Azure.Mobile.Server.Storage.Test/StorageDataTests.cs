@@ -70,8 +70,8 @@ namespace Microsoft.Azure.Mobile.Server
             this.data.Id = key;
 
             // Assert
-            Assert.Equal(this.data.PartitionKey, "Hello");
-            Assert.Equal(this.data.RowKey, "World");
+            Assert.Equal("Hello", this.data.PartitionKey);
+            Assert.Equal("World", this.data.RowKey);
         }
 
         [Fact]

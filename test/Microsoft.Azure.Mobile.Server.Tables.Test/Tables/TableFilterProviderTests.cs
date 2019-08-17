@@ -95,7 +95,7 @@ namespace Microsoft.Azure.Mobile.Server.Tables
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
-        public static void ValidateFilterPipeline(HttpActionDescriptor actionDescriptor, bool isQueryable)
+        internal static void ValidateFilterPipeline(HttpActionDescriptor actionDescriptor, bool isQueryable)
         {
             Collection<FilterInfo> filters = actionDescriptor.GetFilterPipeline();
             if (isQueryable)
