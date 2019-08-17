@@ -6,13 +6,21 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Protocols.WSTrust;
 using System.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using System.Web.Http;
 using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Login;
+using Microsoft.IdentityModel.Tokens;
 using Moq;
 using TestUtilities;
 using Xunit;
+using SecurityAlgorithms = Microsoft.IdentityModel.Tokens.SecurityAlgorithms;
+using SecurityTokenDescriptor = Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor;
+using SecurityTokenExpiredException = Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException;
+using SecurityTokenNotYetValidException = Microsoft.IdentityModel.Tokens.SecurityTokenNotYetValidException;
+using SigningCredentials = Microsoft.IdentityModel.Tokens.SigningCredentials;
 
 namespace Microsoft.Azure.Mobile.Server.Security
 {
@@ -277,7 +285,7 @@ namespace Microsoft.Azure.Mobile.Server.Security
             DateTime tokenExpiryDate = tokenCreationDate + lifetime;
 
             SecurityTokenDescriptor tokenDescriptor = this.GetTestSecurityTokenDescriptor(tokenCreationDate, tokenExpiryDate, audience, issuer);
-            tokenDescriptor.TokenIssuerName = string.Empty;
+            tokenDescriptor.Issuer = string.Empty;
 
             JwtSecurityTokenHandler securityTokenHandler = new JwtSecurityTokenHandler();
             JwtSecurityToken token = securityTokenHandler.CreateToken(tokenDescriptor) as JwtSecurityToken;
@@ -341,12 +349,18 @@ namespace Microsoft.Azure.Mobile.Server.Security
                 new Claim("ver", "2"),
             };
 
+            // Code replaces:  new HmacSigningCredentials(this.testSecretKey),
+            // See Also: https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/wiki/Migrating-from-Katana-(OWIN)-3.x-to-4.x
+            var securityKey = new IdentityModel.Tokens.SymmetricSecurityKey(Encoding.UTF8.GetBytes(testSecretKey));
+            var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
             {
-                AppliesToAddress = audience,
-                TokenIssuerName = issuer,
-                SigningCredentials = new HmacSigningCredentials(this.testSecretKey),
-                Lifetime = new Lifetime(tokenLifetimeStart, tokenLifetimeEnd),
+                Audience = audience,
+                Issuer = issuer,
+                SigningCredentials = signingCredentials,
+                NotBefore = tokenLifetimeStart,
+                Expires = tokenLifetimeEnd,
                 Subject = new ClaimsIdentity(claims),
             };
 

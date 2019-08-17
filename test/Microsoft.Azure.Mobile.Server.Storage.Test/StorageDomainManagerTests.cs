@@ -979,14 +979,14 @@ namespace Microsoft.Azure.Mobile.Server
 
             Assert.Equal("PartitionKeyValue", token.NextPartitionKey);
             Assert.Equal("RowKeyValue", token.NextRowKey);
-            Assert.Equal(null, token.NextTableName);
+            Assert.Null( token.NextTableName);
 
             req = new HttpRequestMessage(HttpMethod.Get, "http://localhost?NextPartitionKey=PartitionKeyValue");
             token = StorageDomainManager<Person>.GetContinuationToken(req);
 
             Assert.Equal("PartitionKeyValue", token.NextPartitionKey);
-            Assert.Equal(null, token.NextRowKey);
-            Assert.Equal(null, token.NextTableName);
+            Assert.Null(token.NextRowKey);
+            Assert.Null(token.NextTableName);
 
             req = new HttpRequestMessage(HttpMethod.Get, "http://localhost?");
             token = StorageDomainManager<Person>.GetContinuationToken(req);

@@ -5,9 +5,12 @@
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.ServiceModel.Security.Tokens;
+using System.Text;
 using System.Web.Http;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -121,7 +124,7 @@ namespace Microsoft.Azure.Mobile.Server.Authentication
             {
                 claimsPrincipal = ValidateToken(validationParameters, tokenValue, secretKey);
             }
-            catch (SecurityTokenException)
+            catch (System.IdentityModel.Tokens.SecurityTokenException)
             {
                 // can happen if the token fails validation for any reason,
                 // e.g. wrong signature, etc.
@@ -185,10 +188,14 @@ namespace Microsoft.Azure.Mobile.Server.Authentication
 
         internal static ClaimsPrincipal ValidateToken(TokenValidationParameters validationParams, string tokenString, string secretKey)
         {
-            validationParams.IssuerSigningToken = new BinarySecretSecurityToken(HmacSigningCredentials.ParseKeyString(secretKey));
+            // Code replaces: new BinarySecretSecurityToken(HmacSigningCredentials.ParseKeyString(secretKey));
+            // See Also: https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/wiki/Migrating-from-Katana-(OWIN)-3.x-to-4.x
+            var securityKey = new IdentityModel.Tokens.SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+
+            validationParams.TokenDecryptionKey = securityKey;
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-            SecurityToken validatedToken = null;
+            Microsoft.IdentityModel.Tokens.SecurityToken validatedToken = null;
 
             return tokenHandler.ValidateToken(tokenString, validationParams, out validatedToken);
         }
