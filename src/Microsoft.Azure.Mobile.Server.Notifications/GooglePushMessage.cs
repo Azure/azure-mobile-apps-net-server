@@ -14,7 +14,7 @@ namespace Microsoft.Azure.Mobile.Server
 {
     /// <summary>
     /// The <see cref="GooglePushMessage"/> helps generating a notification payload targeting 
-    /// Google Cloud Messaging for Chrome (GCM). Notifications can be sent using the <see cref="PushClient"/>
+    /// Google Cloud Messaging (FCM). Notifications can be sent using the <see cref="PushClient"/>
     /// class.
     /// </summary>
     [SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly", Justification = "Expiration is not intended for serialization")]
@@ -36,7 +36,7 @@ namespace Microsoft.Azure.Mobile.Server
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GooglePushMessage"/> class enabling creation
-        /// of a notification message targeting Google Cloud Messaging for Chrome (GCM).Set the 
+        /// of a notification message targeting Google Cloud Messaging for Chrome (FCM).Set the 
         /// appropriate properties on the message and submit through the <see cref="PushClient"/>
         /// </summary>
         public GooglePushMessage()
@@ -52,7 +52,7 @@ namespace Microsoft.Azure.Mobile.Server
         /// <param name="data"></param>
         /// <param name="timeToLive">A <see cref="TimeSpan"/> relative to the current time. The value of this 
         /// parameter must be a duration from 0 to 2,419,200 seconds (28 days), and it corresponds to the maximum period of time 
-        /// for which GCM will store and try to deliver the message. Requests that don't contain this field default 
+        /// for which FCM will store and try to deliver the message. Requests that don't contain this field default 
         /// to the maximum period of 4 weeks.</param>
         public GooglePushMessage(IDictionary<string, string> data, TimeSpan? timeToLive)
             : this()
@@ -143,7 +143,7 @@ namespace Microsoft.Azure.Mobile.Server
         /// <summary>
         /// The Time to Live (TTL) property lets the sender specify the maximum lifespan of a message. The value of this 
         /// parameter must be a duration from 0 to 2,419,200 seconds, and it corresponds to the maximum period of time 
-        /// for which GCM will store and try to deliver the message. Requests that don't contain this field default 
+        /// for which FCM will store and try to deliver the message. Requests that don't contain this field default 
         /// to the maximum period of 4 weeks.
         /// </summary>
         public int? TimeToLiveInSeconds

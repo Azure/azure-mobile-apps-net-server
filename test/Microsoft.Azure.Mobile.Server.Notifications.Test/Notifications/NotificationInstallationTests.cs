@@ -48,7 +48,7 @@ namespace Microsoft.Azure.Mobile.Server.Test
             installation.Templates["myTemplateName"] = testTemplate;
 
             // Assert
-            SerializationAssert.VerifySerialization(installation, "{\"pushChannel\":\"myPushChannel\",\"platform\":\"myPlatform\",\"installationId\":\"myId\",\"templates\":{\"myTemplateName\":{\"body\":\"myBody\",\"headers\":{},\"tags\":[]}},\"secondaryTiles\":{\"myTestTile\":{\"pushChannel\":\"myPushChannel\",\"tags\":[\"myTag\"],\"templates\":{\"mySecondaryTemplateName\":{\"body\":\"mySecondaryBody\",\"headers\":{\"mySecondaryHeaderName\":\"mySecondaryHeaderValue\",\"myHeaderName\":\"myHeaderValue\"},\"tags\":[]}}}},\"tags\":[]}");
+            SerializationAssert.VerifySerialization(installation, "{\"installationId\":\"myId\",\"pushChannel\":\"myPushChannel\",\"platform\":\"myPlatform\",\"templates\":{\"myTemplateName\":{\"body\":\"myBody\",\"headers\":{},\"tags\":[]}},\"tags\":[],\"secondaryTiles\":{\"myTestTile\":{\"pushChannel\":\"myPushChannel\",\"tags\":[\"myTag\"],\"templates\":{\"mySecondaryTemplateName\":{\"body\":\"mySecondaryBody\",\"headers\":{\"mySecondaryHeaderName\":\"mySecondaryHeaderValue\",\"myHeaderName\":\"myHeaderValue\"},\"tags\":[]}}}}}");
         }
     }
 }

@@ -92,70 +92,13 @@ namespace Microsoft.WindowsAzure.Mobile.Service
             }
         }
 
-        [Fact]
-        public void CopyTagsToInstallation_DoesNotThrowForEmptyTagsSet()
-        {
-            Installation installation = MakeTestInstallation();
-            HashSet<string> tags = new HashSet<string>();
-            NotificationInstallationsControllerMock.CopyTagsToInstallation(installation, tags, true);
-            IList<string> tagsOutput = installation.Tags;
-            Assert.NotNull(tagsOutput);
-            Assert.True(tagsOutput.Count == 0);
-        }
-
-        [Fact]
-        public void CopyTagsToInstallation_DoesNotThrowForNullTags()
-        {
-            Installation installation = MakeTestInstallation();
-            NotificationInstallationsControllerMock.CopyTagsToInstallation(installation, null, true);
-            IList<string> tagsOutput = installation.Tags;
-            Assert.Null(tagsOutput);
-        }
-
         private static Installation MakeTestInstallation()
         {
             return new Installation
             {
                 InstallationId = TestGuidValid,
                 Platform = NotificationPlatform.Wns,
-                PushChannel = WnsPushChannelValid,
-                SecondaryTiles = new Dictionary<string, WnsSecondaryTile>
-                {
-                    {
-                        "tileName",
-                        new WnsSecondaryTile
-                        {
-                            PushChannel = WnsPushChannelValid,
-                            Tags = new List<string>
-                            {
-                                "tag1",
-                                "tag2"
-                            },
-                            Templates = new Dictionary<string, InstallationTemplate>
-                            {
-                                {
-                                    "templateName",
-                                    new InstallationTemplate
-                                    {
-                                        Body = "someBody",
-                                        Headers = new Dictionary<string, string>
-                                        {
-                                            {
-                                                "headerName",
-                                                "headerValue"
-                                            }
-                                        },
-                                        Tags = new List<string>
-                                        {
-                                            "tagA",
-                                            "tagB"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                PushChannel = WnsPushChannelValid
             };
         }
 
@@ -448,7 +391,7 @@ namespace Microsoft.WindowsAzure.Mobile.Service
         [Theory]
         [InlineData(WnsPushChannelValid, WindowsNotificationServiceString, NotificationPlatform.Wns)]
         [InlineData(ApnsTokenValid, AppleNotificationServiceString, NotificationPlatform.Apns)]
-        [InlineData(GcmToken, GcmNotificationServiceString, NotificationPlatform.Gcm)]
+        [InlineData(GcmToken, GcmNotificationServiceString, NotificationPlatform.Fcm)]
         public void CreateInstallationObject_ParsingIsConsistent(string pushChannel, string platformAsString, NotificationPlatform platformAsEnum)
         {
             string installationId = "12345678-1234-1234-1234-123456789012";
@@ -514,28 +457,16 @@ namespace Microsoft.WindowsAzure.Mobile.Service
             Assert.Equal(pushChannel, testInstallation.PushChannel);
             if (platformAsEnum == NotificationPlatform.Wns)
             {
-                Assert.NotNull(testInstallation.SecondaryTiles);
-                Assert.NotNull(testInstallation.SecondaryTiles[tileName]);
-                Assert.Equal(pushChannel, testInstallation.SecondaryTiles[tileName].PushChannel);
-                Assert.Equal(0, testInstallation.SecondaryTiles[tileName].Tags.Count);
-                Assert.NotNull(testInstallation.SecondaryTiles[tileName].Templates);
-                Assert.NotNull(testInstallation.SecondaryTiles[tileName].Templates[tileTemplateName]);
-
-                // Tags were stripped within the tile
-                Assert.Equal(tileTemplateBody, testInstallation.SecondaryTiles[tileName].Templates[tileTemplateName].Body);
                 Assert.Equal(installationTemplateHeaderValue, testInstallation.Templates[installationTemplateName].Headers[installationTemplateHeaderName]);
             }
             else
             {
-                Assert.Null(testInstallation.SecondaryTiles);
                 Assert.Null(testInstallation.Templates[installationTemplateName].Headers);
             }
 
             Assert.NotNull(testInstallation.Templates[installationTemplateName]);
             Assert.Equal(installationTemplateBody, testInstallation.Templates[installationTemplateName].Body);
 
-            // Tags were stripped within the template
-            Assert.Equal(0, testInstallation.Templates[installationTemplateName].Tags.Count);
         }
 
         [Fact]
@@ -605,7 +536,7 @@ namespace Microsoft.WindowsAzure.Mobile.Service
             Assert.NotNull(installation);
             Assert.Equal(notification.InstallationId, installation.InstallationId);
             Assert.Equal(notification.PushChannel, installation.PushChannel);
-            Assert.Equal(3, installation.Tags.Count());
+            Assert.Equal(4, installation.Tags.Count());
 
             // verify the existing userid is removed and replaced with current
             Assert.Equal("_UserId:my:userid", installation.Tags[2]);

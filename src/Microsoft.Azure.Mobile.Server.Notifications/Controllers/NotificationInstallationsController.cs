@@ -23,6 +23,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
     /// Notification Hub associated with this service.
     /// </summary>
     [MobileAppController]
+    [RoutePrefix("")]
     public class NotificationInstallationsController : ApiController
     {
         private const string UserIdTagPrefix = "_UserId:";
@@ -36,7 +37,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         private const string WindowsStorePlatform = "wns";
         private const string ApplePlatform = "apns";
         private const string MicrosoftPushPlatform = "mpns";
-        private const string GooglePlatform = "gcm";
+        private const string GooglePlatform = "fcm";
 
         private PushClient pushClient = null;
 
@@ -56,6 +57,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
+
         }
 
         /// <summary>
@@ -66,8 +68,16 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         /// <param name="installationId">The installation id to register or modify.</param>
         /// <param name="notificationInstallation">The <see cref="NotificationInstallation"/> object to register.</param>
         /// <returns><see cref="HttpResponseMessage"/> describing the result of the operation.</returns>
-        public async Task<HttpResponseMessage> PutInstallation(string installationId, NotificationInstallation notificationInstallation)
+        /// 
+        [Route("push/installations/{installationId}"), HttpPut, HttpGet]
+        public async Task<HttpResponseMessage> PutInstallation([FromUri]string installationId, [FromBody]NotificationInstallation notificationInstallation)
         {
+            //String ni = Newtonsoft.Json.JsonConvert.SerializeObject(notificationInstallation);
+
+            ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
+
+            traceWriter.Info($"notificationInstallation.Tags.Count : {notificationInstallation.Tags.Count}");
+
             if (!ModelState.IsValid)
             {
                 throw new HttpResponseException(this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, this.ModelState));
@@ -76,10 +86,11 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
             this.ValidateInstallationId(installationId);
             this.ValidateNotificationInstallation(installationId, notificationInstallation);
 
-            ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
-
             // The installation object that will be sent to NH.
             Installation installation = this.CreateInstallation(notificationInstallation);
+
+            CopyAllTagsToInstallation(installation, notificationInstallation.Tags);
+
             HashSet<string> tagsAssociatedWithInstallationId = await this.GetTagsAssociatedWithInstallationId(notificationInstallation.InstallationId);
             ClaimsPrincipal serviceUser = this.User as ClaimsPrincipal;
             if (tagsAssociatedWithInstallationId.Count == 0)
@@ -143,6 +154,8 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
                     CopyTagsToInstallation(installation, tagsAssociatedWithInstallationId, true);
                 }
 
+                CopyTagsToInstallation(installation, tagsAssociatedWithInstallationId, true);
+
                 try
                 {
                     await this.UpsertInstallationAsync(installation);
@@ -172,16 +185,17 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         /// </summary>
         /// <param name="installationId">The installation id to deregister from Notification Hub.</param>
         /// <returns><see cref="HttpResponseMessage"/> describing the result of the operation.</returns>
+        [Route("push/installations/{installationId}"), HttpDelete]
         public async Task<HttpResponseMessage> DeleteInstallation(string installationId)
         {
+            ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
+
             if (!ModelState.IsValid)
             {
                 throw new HttpResponseException(this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, this.ModelState));
             }
 
             this.ValidateInstallationId(installationId);
-
-            ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
 
             // Submit the delete
             try
@@ -211,16 +225,6 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
         /// <param name="copyUserId">True to copy the UserId tag. False, otherwise.</param>
         internal static void CopyTagsToInstallation(Installation installation, HashSet<string> tags, bool copyUserId)
         {
-            if (tags == null)
-            {
-                installation.Tags = null;
-                return;
-            }
-
-            if (tags.Count < 1)
-            {
-                installation.Tags = new List<string>();
-            }
 
             foreach (string tag in tags)
             {
@@ -247,14 +251,23 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
             }
         }
 
+        internal static void CopyAllTagsToInstallation(Installation installation, IList<string> tags) {
+            foreach (string tag in tags)
+            {
+                AddTagToInstallation(installation, tag);
+            }
+        }
+
         internal static void AddTagToInstallation(Installation installation, string tag)
         {
             if (installation.Tags == null)
             {
                 installation.Tags = new List<string>();
             }
-
-            installation.Tags.Add(tag);
+            if (!installation.Tags.Contains(tag))
+            {
+                installation.Tags.Add(tag);
+            }
         }
 
         /// <summary>
@@ -370,17 +383,18 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
             {
                 installation.Platform = NotificationPlatform.Wns;
 
-                // Parse each Secondary Tile passed in request and add to installation object.
-                foreach (string tileName in notificationInstallation.SecondaryTiles.Keys)
-                {
-                    NotificationSecondaryTile notificationTile = notificationInstallation.SecondaryTiles[tileName];
-                    if (installation.SecondaryTiles == null)
-                    {
-                        installation.SecondaryTiles = new Dictionary<string, WnsSecondaryTile>();
-                    }
+                //// Parse each Secondary Tile passed in request and add to installation object.
+                //foreach (string tileName in notificationInstallation.SecondaryTiles.Keys)
+                //{
+                //    NotificationSecondaryTile notificationTile = notificationInstallation.SecondaryTiles[tileName];
 
-                    installation.SecondaryTiles[tileName] = CreateWnsSecondaryTile(notificationTile);
-                }
+                //    if (installation.SecondaryTiles == null)
+                //    {
+                //        installation.SecondaryTiles = new Dictionary<string, WnsSecondaryTile>();
+                //    }
+
+                //    installation.SecondaryTiles[tileName] = CreateWnsSecondaryTile(notificationTile);
+                //}
             }
             else if (notificationInstallation.Platform.Equals(ApplePlatform, StringComparison.OrdinalIgnoreCase))
             {
@@ -388,7 +402,7 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
             }
             else if (notificationInstallation.Platform.Equals(GooglePlatform, StringComparison.OrdinalIgnoreCase))
             {
-                installation.Platform = NotificationPlatform.Gcm;
+                installation.Platform = NotificationPlatform.Fcm;
             }
             else
             {
@@ -443,8 +457,6 @@ namespace Microsoft.Azure.Mobile.Server.Controllers
             {
                 InstallationTemplate installationTemplate = new InstallationTemplate();
 
-                // strip tags
-                installationTemplate.Tags = new List<string>();
                 installationTemplate.Body = notificationTemplate.Body;
                 if (platform == NotificationPlatform.Wns)
                 {

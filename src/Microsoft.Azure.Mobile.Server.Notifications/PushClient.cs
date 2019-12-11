@@ -249,7 +249,7 @@ namespace Microsoft.Azure.Mobile.Server.Notifications
             }
             else if (message is GooglePushMessage)
             {
-                notification = new GcmNotification(message.ToString());
+                notification = new FcmNotification(message.ToString());
             }
             else if ((templatePush = message as TemplatePushMessage) != null)
             {

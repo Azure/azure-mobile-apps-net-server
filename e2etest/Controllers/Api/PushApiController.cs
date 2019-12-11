@@ -79,7 +79,7 @@ namespace ZumoE2EServerApp.Controllers
                     }
                     var result = await this.pushClient.SendAsync(message);
                 }
-                else if (type == "gcm")
+                else if (type == "fcm")
                 {
                     GooglePushMessage message = new GooglePushMessage();
                     message.JsonPayload = payloadString;
@@ -152,12 +152,6 @@ namespace ZumoE2EServerApp.Controllers
                         nhTemplates = JsonConvert.SerializeObject(nhInstallation.Templates);
                         nhTemplates = Regex.Replace(nhTemplates, @"\s+", String.Empty);
                         templates = Regex.Replace(templates, @"\s+", String.Empty);
-                    }
-                    if (nhInstallation.SecondaryTiles != null)
-                    {
-                        nhSecondaryTiles = JsonConvert.SerializeObject(nhInstallation.SecondaryTiles);
-                        nhSecondaryTiles = Regex.Replace(nhSecondaryTiles, @"\s+", String.Empty);
-                        secondaryTiles = Regex.Replace(secondaryTiles, @"\s+", String.Empty);
                     }
                     if (nhInstallation.PushChannel.ToLower() != channelUri.ToLower())
                     {
