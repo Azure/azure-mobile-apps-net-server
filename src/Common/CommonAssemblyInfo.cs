@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("Microsoft Corporation")]
 [assembly: AssemblyCopyright("© Microsoft Corporation.  All rights reserved.")]
 [assembly: AssemblyProduct("Microsoft® Azure Mobile Apps Server SDK")]
-[assembly: CLSCompliant(true)]
+[assembly: CLSCompliant(false)]
 [assembly: ComVisible(false)]
 [assembly: AssemblyConfiguration("")]
 [assembly: NeutralResourcesLanguage("en-US")]

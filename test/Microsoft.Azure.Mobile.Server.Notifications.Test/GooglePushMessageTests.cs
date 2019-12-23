@@ -16,7 +16,7 @@ namespace Microsoft.Azure.Mobile.Server
             { "Demo", "{\r\n  \"data\": {\r\n    \"key1\": \"value1\",\r\n    \"key2\": \"value2\"\r\n  },\r\n  \"collapse_key\": \"demo\",\r\n  \"delay_while_idle\": true,\r\n  \"time_to_live\": 3\r\n}" },
         };
 
-        private GooglePushMessage message = new GooglePushMessage();
+        private FirebasePushMessage message = new FirebasePushMessage();
 
         public static TheoryDataCollection<IDictionary<string, string>, TimeSpan?> CtorData
         {
@@ -52,7 +52,7 @@ namespace Microsoft.Azure.Mobile.Server
         public void Serializes_Demo()
         {
             // Arrange
-            GooglePushMessage gcmNot = new GooglePushMessage();
+            FirebasePushMessage gcmNot = new FirebasePushMessage();
             gcmNot.CollapseKey = "demo";
             gcmNot.DelayWhileIdle = true;
             gcmNot.Data.Add("key1", "value1");
@@ -71,7 +71,7 @@ namespace Microsoft.Azure.Mobile.Server
         public void GooglePushMessage_DataTimeToLive_SetsDataAndTimeToLive(IDictionary<string, string> data, TimeSpan? timeToLive)
         {
             // Act
-            GooglePushMessage gcmNot = new GooglePushMessage(data, timeToLive);
+            FirebasePushMessage gcmNot = new FirebasePushMessage(data, timeToLive);
 
             // Assert
             foreach (string dataKey in data.Keys)
@@ -92,14 +92,14 @@ namespace Microsoft.Azure.Mobile.Server
         [Fact]
         public void GooglePushMessage_DataTimeToLive_ThrowsOnNegativeTimeSpan()
         {
-            ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(() => new GooglePushMessage(new Dictionary<string, string>(), TimeSpan.FromMinutes(-1)));
+            ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(() => new FirebasePushMessage(new Dictionary<string, string>(), TimeSpan.FromMinutes(-1)));
             Assert.Equal("The value must be greater than 00:00:00.\r\nParameter name: timeToLive\r\nActual value was -00:01:00.", ex.Message);
         }
 
         [Fact]
         public void GooglePushMessage_DataTimeToLive_ThrowsOnTooLargeTimeSpan()
         {
-            ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(() => new GooglePushMessage(new Dictionary<string, string>(), TimeSpan.FromDays(30)));
+            ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(() => new FirebasePushMessage(new Dictionary<string, string>(), TimeSpan.FromDays(30)));
             Assert.Equal("The value must be less than 28.00:00:00.\r\nParameter name: timeToLive\r\nActual value was 30.00:00:00.", ex.Message);
         }
 
@@ -107,7 +107,7 @@ namespace Microsoft.Azure.Mobile.Server
         public void JsonPayload_TakesOverSerialization()
         {
             // Arrange
-            GooglePushMessage gcmNot = new GooglePushMessage()
+            FirebasePushMessage gcmNot = new FirebasePushMessage()
             {
                 JsonPayload = "text"
             };
